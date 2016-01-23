@@ -8,7 +8,7 @@ import com.entities.Item;
 @Path("/food")
 public class ItemService {
 
-	@POST
+	@GET
 	// @Path("/{param}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Item getMsg(@QueryParam("msg") String msg, @QueryParam("name") String name) {
