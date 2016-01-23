@@ -49,6 +49,6 @@
     <finalName>Warehouse</finalName>
   </build>
   <modules>
-	<module>warehouse-database</module>
+  	<module>../warehouse-database</module>
   </modules>
 </project>

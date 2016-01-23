@@ -1,0 +1,4 @@
+CREATE TABLE warehouse.item (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50)
+)
