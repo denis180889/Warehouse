@@ -1,5 +1,6 @@
 
 RemoteSystemsTempFiles/
+.recommenders/
 
 target/
 pom.xml.tag
