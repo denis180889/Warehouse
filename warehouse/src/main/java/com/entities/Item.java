@@ -6,20 +6,33 @@ import javax.xml.bind.annotation.*;
 //@XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class Item {
-	public String type = "food";
-	public int price = 10;
-	public String name;
-	public String msg;
+	 String name;
+	 String description;
+	 float longitude;
+	 float latitude;
+	 int capacity;
 	
-	public Item() {
-
-	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public void setMsg(String msg) {
-		this.msg = msg;
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
+	}
+
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public Item() {
 	}
 }
