@@ -6,11 +6,11 @@ import javax.xml.bind.annotation.*;
 //@XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class Item {
-	 String name;
-	 String description;
-	 float longitude;
-	 float latitude;
-	 int capacity;
+	public String name;
+	public String description;
+	public float longitude;
+	public float latitude;
+	public int capacity;
 	
 	
 	public void setName(String name) {

@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.entities.Item;
 import com.mysql.*;
 
 public class DatabaseConnection {
@@ -38,4 +41,28 @@ public class DatabaseConnection {
         generatedKeys.next(); 
         return generatedKeys.getInt(1);
 	}
+	
+	public List<Item> getAllItems() throws SQLException{
+		List<Item> allItems = new ArrayList<Item>();
+		ResultSet rs = null;
+		
+		String query = "SELECT * FROM item";
+		statement = conn.createStatement();
+		rs = statement.executeQuery(query);
+		
+		 while (rs.next()) {
+             Item item = new Item();
+             item.setName(rs.getString("name"));
+             item.setDescription(rs.getString("description"));
+             item.setLatitude(rs.getFloat("longitude"));
+             item.setLongitude(rs.getFloat("latitude"));
+             item.setCapacity((rs.getInt("capacity")));
+
+             //add each item to the list
+             allItems.add(item);
+         }
+		
+		return allItems;
+	}
+	
 }
