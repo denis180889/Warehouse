@@ -2,6 +2,7 @@
 RemoteSystemsTempFiles/
 .recommenders/
 
+/Servers/
 .classpath
 .project
 
