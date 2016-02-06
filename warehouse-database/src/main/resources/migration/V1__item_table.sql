@@ -1,4 +1,4 @@
-CREATE TABLE warehouse.item (
+CREATE TABLE item (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50),
   description VARCHAR(250),

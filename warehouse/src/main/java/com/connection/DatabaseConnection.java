@@ -1,5 +1,7 @@
 package com.connection;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import com.entities.Item;
 import com.mysql.*;
@@ -16,16 +19,24 @@ public class DatabaseConnection {
 
 	Connection conn;
 	Statement statement;
-	
-	public DatabaseConnection() throws ClassNotFoundException, SQLException{
+
+	public DatabaseConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/warehouse", "root", "root");
-		
+		Properties property = new Properties();
+		try {
+			FileInputStream fis = new FileInputStream("C:/Users/Denis/warehouse.properties");
+			property.load(fis);
+		} catch (IOException e) {
+			System.err.println("Error: Property file isn't present!");
+		}
+		conn = DriverManager.getConnection(property.getProperty("jdbc.url"), property.getProperty("root"), property.getProperty("root"));
 	}
-	
-	public int insertRowInItemsTable(String name, String description, float longitude, float latitude, int capacity) throws SQLException{
-		String insertTableSQL = "INSERT INTO item (name, description, longitude, latitude, capacity) " + "VALUES" + "(?,?,?,?,?)";
-		
+
+	public int insertRowInItemsTable(String name, String description, float longitude, float latitude, int capacity)
+			throws SQLException {
+		String insertTableSQL = "INSERT INTO item (name, description, longitude, latitude, capacity) " + "VALUES"
+				+ "(?,?,?,?,?)";
+
 		PreparedStatement preparedStatement = conn.prepareStatement(insertTableSQL, Statement.RETURN_GENERATED_KEYS);
 		
 		preparedStatement.setString(1, name);
