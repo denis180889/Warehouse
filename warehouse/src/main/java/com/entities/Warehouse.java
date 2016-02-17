@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.*;
 
 //@XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
-public class Item {
+public class Warehouse {
 	public String name;
 	public String description;
 	public float longitude;
@@ -33,6 +33,6 @@ public class Item {
 		this.capacity = capacity;
 	}
 
-	public Item() {
+	public Warehouse() {
 	}
 }

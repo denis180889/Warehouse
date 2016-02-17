@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.entities.Item;
+import com.entities.Warehouse;
 import com.mysql.*;
 
 public class DatabaseConnection {
@@ -53,8 +53,8 @@ public class DatabaseConnection {
         return generatedKeys.getInt(1);
 	}
 	
-	public List<Item> getAllItems() throws SQLException{
-		List<Item> allItems = new ArrayList<Item>();
+	public List<Warehouse> getAllItems() throws SQLException{
+		List<Warehouse> allItems = new ArrayList<Warehouse>();
 		ResultSet rs = null;
 		
 		String query = "SELECT * FROM item";
@@ -62,7 +62,7 @@ public class DatabaseConnection {
 		rs = statement.executeQuery(query);
 		
 		 while (rs.next()) {
-             Item item = new Item();
+             Warehouse item = new Warehouse();
              item.setName(rs.getString("name"));
              item.setDescription(rs.getString("description"));
              item.setLatitude(rs.getFloat("longitude"));
