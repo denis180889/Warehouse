@@ -13,7 +13,7 @@ import com.entities.Warehouse;
 
 
 @Path("/items")
-public class ItemResource {
+public class WarehouseResource {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
