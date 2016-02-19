@@ -5,21 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.dao.WarehouseDao;
 import com.entities.Warehouse;
-import dao.WarehouseDAO;
 
 @Path("/items")
+@ComponentScan("com.entities")
 public class WarehouseResource {
-
+	
+	@Autowired
+	private WarehouseDao warehouseDao; 
+	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public void createItem(@FormParam("name") String name, @FormParam("description") String description,
 			@FormParam("longitude") float longitude, @FormParam("latitude") float latitude,
 			@FormParam("capacity") int capacity) throws SQLException, ClassNotFoundException {
-
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		WarehouseDAO warehouseDAO = context.getBean(WarehouseDAO.class);
 
 		Warehouse warehouse = new Warehouse();
 		warehouse.setName(name);
@@ -28,17 +33,14 @@ public class WarehouseResource {
 		warehouse.setLongitude(longitude);
 		warehouse.setCapacity(capacity);
 
-		warehouseDAO.save(warehouse);
+		warehouseDao.save(warehouse);
 	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Warehouse> getItems() throws ClassNotFoundException, SQLException {
 
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		WarehouseDAO warehouseDAO = context.getBean(WarehouseDAO.class);
-
-		List<Warehouse> list = warehouseDAO.list();
+		List<Warehouse> list = warehouseDao.list();
 
 		return list;
 	}

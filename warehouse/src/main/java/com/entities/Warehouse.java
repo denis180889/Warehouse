@@ -7,10 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 //@XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "Item")
+@Table(name = "item")
 public class Warehouse {
 
 	@Id
@@ -51,9 +53,4 @@ public class Warehouse {
 	public Warehouse() {
 	}
 
-	@Override
-	public String toString() {
-		return "id=" + id + ", name=" + name + ", description=" + description + ", longitude=" + longitude
-				+ ", latitude=" + latitude + ", capacity=" + capacity;
-	}
 }
