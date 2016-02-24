@@ -1,5 +1,10 @@
 
 RemoteSystemsTempFiles/
+.recommenders/
+
+/Servers/
+.classpath
+.project
 
 target/
 pom.xml.tag
