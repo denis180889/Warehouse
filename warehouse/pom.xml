@@ -11,6 +11,11 @@
 
 	<properties>
 		<spring.version>4.1.1.RELEASE</spring.version>
+		<codehaus.version>1.9.2</codehaus.version>
+		<jersey.version>2.22.2</jersey.version>
+		<mysql.version>5.1.30</mysql.version>
+		<hibernate.version>3.6.9.Final</hibernate.version>
+		<dbcp.version>1.4</dbcp.version>
 	</properties>
 
 	<dependencies>
@@ -18,73 +23,78 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.2</version>
+			<version>${codehaus.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
-			<version>1.9.2</version>
+			<version>${codehaus.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.2</version>
+			<version>${codehaus.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-xc</artifactId>
-			<version>1.9.2</version>
+			<version>${codehaus.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
+			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-server</artifactId>
-			<version>1.9</version>
+			<version>${jersey.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
+			<groupId>org.glassfish.jersey.ext</groupId>
+			<artifactId>jersey-spring3</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
-			<version>1.9</version>
+			<version>${jersey.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
-			<version>1.9</version>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>${jersey.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.30</version>
+			<version>${mysql.version}</version>
 		</dependency>
 
 		<!-- Spring and Transactions -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.0.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>4.0.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- Spring ORM support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.0.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.6.9.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>3.6.9.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -94,7 +104,7 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
+			<version>${dbcp.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
