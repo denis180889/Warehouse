@@ -40,5 +40,6 @@
         <property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
     </bean>
     
-    
+    <bean id="warehouseService" class="com.service.WarehouseService">
+    </bean>
 </beans>
