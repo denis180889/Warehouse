@@ -24,7 +24,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>com.entities.Warehouse</value>
+                <value>com.entities.WarehouseEntity</value>
             </list>
         </property>
         <property name="hibernateProperties">
