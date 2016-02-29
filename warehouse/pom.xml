@@ -13,10 +13,11 @@
 		<spring.version>3.2.3.RELEASE</spring.version>
 		<codehaus.version>1.9.2</codehaus.version>
 		<jersey.version>2.22.2</jersey.version>
-		<mysql.version>5.1.30</mysql.version>
+		<mysql.connector.version>5.1.33</mysql.connector.version>
 		<hibernate.version>3.6.9.Final</hibernate.version>
 		<dbcp.version>1.4</dbcp.version>
 		<commons.logging.version>1.1.1</commons.logging.version>
+		<flyway.version>3.2.1</flyway.version>
 	</properties>
 
 	<dependencies>
@@ -70,7 +71,6 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
 		</dependency>
 
 		<!-- Spring and Transactions -->
@@ -114,6 +114,23 @@
 			<version>${dbcp.version}</version>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-core</artifactId>
+				<version>${flyway.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.connector.version}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
 	<build>
 		<finalName>Warehouse</finalName>
 	</build>
