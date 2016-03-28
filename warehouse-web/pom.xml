@@ -120,5 +120,16 @@
 
   <build>
     <finalName>warehouse-web</finalName>
+	<plugins>
+        <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                   <source>${java.compiler.version}</source>
+                   <target>${java.compiler.version}</target>
+                </configuration>
+        </plugin>
+    </plugins>    
   </build>
 </project>

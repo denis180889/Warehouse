@@ -11,9 +11,8 @@
 	<properties>
 		<mysql.connector.version>5.1.33</mysql.connector.version>
 		<flyway.version>3.2.1</flyway.version>
+		<java.compiler.version>1.7</java.compiler.version>
 	</properties>
-
-
 
 	<dependencyManagement>
 		<dependencies>
@@ -43,6 +42,6 @@
 	</build>
 	<modules>
 		<module>../warehouse-database</module>
-                <module>../warehouse-web</module>
+        <module>../warehouse-web</module>
   </modules>
 </project>
