@@ -31,9 +31,7 @@ public class WarehouseResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<WarehouseEntity> getWarehouses() throws ClassNotFoundException, SQLException {
-
-	   // TODO: refactor to return list of Warehouse, not WarehouseEntity
+	public List<Warehouse> getWarehouses() throws ClassNotFoundException, SQLException {
 		return warehouseService.getWarehouses();
 	}
 }

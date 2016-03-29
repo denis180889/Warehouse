@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.dao.WarehouseDao;
@@ -16,8 +17,12 @@ public class WarehouseService {
 		return warehouseDao.save(entity);
 	}
 	
-	public List<WarehouseEntity> getWarehouses(){
-		List<WarehouseEntity> list = warehouseDao.list();
-		return list;
+	public List<Warehouse> getWarehouses(){
+		List<WarehouseEntity> listWE = warehouseDao.list();
+		List<Warehouse> listW = new ArrayList<Warehouse>();
+		for(WarehouseEntity entity:listWE){
+			listW.add(new Warehouse(entity));
+		}
+		return listW;
 	}
 }

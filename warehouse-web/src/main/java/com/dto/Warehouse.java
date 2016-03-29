@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.entities.WarehouseEntity;
+
 /**
  * Represents REST API data model for warehouse
  */
@@ -21,6 +23,14 @@ public class Warehouse {
 
    private int capacity;
 
+   public Warehouse (WarehouseEntity warehouseEntity){
+	   this.name = warehouseEntity.getName();
+	   this.description = warehouseEntity.getDescription();
+	   this.longitude = warehouseEntity.getLongitude();
+	   this.latitude = warehouseEntity.getLatitude();
+	   this.capacity = warehouseEntity.getCapacity();
+   }
+   
    public String getName() {
       return name;
    }
