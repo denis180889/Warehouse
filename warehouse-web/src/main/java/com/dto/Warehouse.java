@@ -23,6 +23,9 @@ public class Warehouse {
 
    private int capacity;
 
+   public Warehouse() {
+   }
+   
    public Warehouse (WarehouseEntity warehouseEntity){
 	   this.name = warehouseEntity.getName();
 	   this.description = warehouseEntity.getDescription();
