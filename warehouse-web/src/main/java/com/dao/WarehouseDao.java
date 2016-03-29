@@ -31,7 +31,7 @@ public class WarehouseDao extends BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<WarehouseEntity> list() {
 		Session session = sessionFactory.openSession();
-		List<WarehouseEntity> personList = session.createQuery("from Warehouse").list();
+		List<WarehouseEntity> personList = session.createQuery("from WarehouseEntity").list();
 		session.close();
 		return personList;
 	}

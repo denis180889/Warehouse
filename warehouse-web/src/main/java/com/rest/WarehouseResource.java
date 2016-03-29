@@ -14,7 +14,7 @@ import com.dto.common.SingleResult;
 import com.entities.WarehouseEntity;
 import com.service.WarehouseService;
 
-@Path("/items")
+@Path("/warehouse")
 @ComponentScan("com.entities")
 public class WarehouseResource {
 	
