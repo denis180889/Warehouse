@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,14 +16,9 @@ public class WarehouseDao extends BaseDao {
 	private SessionFactory sessionFactory;
 	
 	public Long save(WarehouseEntity p) {
-	   
-	   // TODO: refactor to use declarative transaction configuration
 		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.persist(p);
-		tx.commit();
+		session.save(p);
 		session.close();
-		
 		return p.getId();
 	}
 
