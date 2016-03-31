@@ -4,14 +4,17 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.dto.Warehouse;
 import com.dto.common.SingleResult;
-import com.entities.WarehouseEntity;
 import com.service.WarehouseService;
 
 @Path("/warehouse")

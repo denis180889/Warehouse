@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entities.BaseEntity;
-import com.entities.WarehouseEntity;
 
 
 public abstract class BaseDao <T extends BaseEntity> {
