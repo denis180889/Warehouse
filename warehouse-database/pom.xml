@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>warehouse</groupId>
+		<artifactId>warehouse</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../warehouse</relativePath>
+	</parent>
+	<artifactId>warehouse-database</artifactId>
+	<name>warehouse-database</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<flyway.url>jdbc:mysql://localhost:3306/warehouse</flyway.url>
+		<flyway.user>root</flyway.user>
+		<flyway.password>root</flyway.password>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>properties-maven-plugin</artifactId> 
+				<version>1.0-alpha-2</version> <executions> <execution> <phase>initialize</phase> 
+				<goals> <goal>read-project-properties</goal> </goals> <configuration> <files> 
+				<file>C:/Users/Denis/warehouse.properties</file> </files> </configuration> 
+				</execution> </executions> </plugin> -->
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<url>${flyway.url}</url>
+					<user>${flyway.user}</user>
+					<password>${flyway.password}</password>
+					<locations>
+						<location>filesystem:${project.basedir}/src/main/resources/migration</location>
+					</locations>
+					<driver>com.mysql.jdbc.Driver</driver>
+					<table>SCHEMA_HISTORY</table>
+					<initVersion>0.0</initVersion>
+				</configuration>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                   <source>${java.compiler.version}</source>
+                   <target>${java.compiler.version}</target>
+                </configuration>
+        	</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
