@@ -2,17 +2,26 @@ package com.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entities.BaseEntity;
 
 
 public abstract class BaseDao <T extends BaseEntity> {
   
-    @Autowired
-    private SessionFactory sessionFactory;
+    protected SessionFactory sessionFactory;
+    
+    public void setSessionFactory(SessionFactory sessionFactory) {
+      this.sessionFactory = sessionFactory;
+   }
+
+   private Class<T> type;
+    
+    public BaseDao(Class<T> type) {
+       this.type = type;
+   }
     
     public Long save(T p) {
        Session session = sessionFactory.openSession();
@@ -22,11 +31,11 @@ public abstract class BaseDao <T extends BaseEntity> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<T> list(T p) {
-       String type = p.getClass().getName();
+    public List<T> list() {
        Session session = sessionFactory.openSession();
-       List<T> personList = session.createQuery("from "+type).list();
+       Criteria crit = session.createCriteria(type);
+       List<T> cats = crit.list();
        session.close();
-       return personList;
+       return cats;
     }
 }

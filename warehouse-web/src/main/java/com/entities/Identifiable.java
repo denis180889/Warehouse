@@ -1,5 +1,5 @@
 package com.entities;
 
-public interface Entity {
+public interface Identifiable {
    public Long getId();
 }

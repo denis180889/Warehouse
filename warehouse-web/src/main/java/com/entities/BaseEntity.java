@@ -1,5 +1,5 @@
 package com.entities;
 
-public abstract class BaseEntity implements Entity {
+public abstract class BaseEntity implements Identifiable {
 
 }
