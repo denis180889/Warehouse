@@ -14,6 +14,8 @@ public class WarehouseService {
 	@Autowired
 	private WarehouseDao warehouseDao; 
 	
+	WarehouseEntity type = null;
+	
 	@Transactional
 	public Long saveWarehouse(Warehouse wh){
 		WarehouseEntity entity = new WarehouseEntity(wh.getName(), wh.getDescription(), wh.getLongitude(), wh.getLatitude(), wh.getCapacity());
@@ -21,7 +23,7 @@ public class WarehouseService {
 	}
 	
 	public List<Warehouse> getWarehouses(){
-		List<WarehouseEntity> listWE = warehouseDao.list();
+		List<WarehouseEntity> listWE = warehouseDao.list(type);
 		List<Warehouse> listW = new ArrayList<Warehouse>();
 		for(WarehouseEntity entity:listWE){
 			listW.add(new Warehouse(entity));

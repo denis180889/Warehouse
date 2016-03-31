@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "item")
-public class WarehouseEntity  {
+public class WarehouseEntity extends BaseEntity {
 
    @Id
    @Column(name = "id")
@@ -67,5 +67,5 @@ public class WarehouseEntity  {
       return capacity;
    }
 
-
+   
 }
