@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "item")
+@Table(name = "warehouse")
 public class WarehouseEntity extends BaseEntity {
 
    @Id
@@ -37,7 +37,6 @@ public class WarehouseEntity extends BaseEntity {
       this.capacity = capacity;
    }
 
-
    public Long getId() {
       return id;
    }
@@ -58,10 +57,8 @@ public class WarehouseEntity extends BaseEntity {
       return latitude;
    }
 
-
    public int getCapacity() {
       return capacity;
    }
 
-   
 }
