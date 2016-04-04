@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "item")
-public class WarehouseEntity extends BaseEntity {
+@Table(name = "goods")
+public class GoodEntity extends BaseEntity {
 
    @Id
    @Column(name = "id")
@@ -20,24 +20,14 @@ public class WarehouseEntity extends BaseEntity {
 
    private String description;
 
-   private float longitude;
-
-   private float latitude;
-
-   private int capacity;
-
-   public WarehouseEntity() {
+   public GoodEntity() {
    }
-
-   public WarehouseEntity(String name, String description, float longitude, float latitude, int capacity) {
+   
+   public GoodEntity(String name, String description) {
       this.name = name;
       this.description = description;
-      this.longitude = longitude;
-      this.latitude = latitude;
-      this.capacity = capacity;
    }
-
-
+   
    public Long getId() {
       return id;
    }
@@ -50,18 +40,4 @@ public class WarehouseEntity extends BaseEntity {
       return description;
    }
 
-   public float getLongitude() {
-      return longitude;
-   }
-
-   public float getLatitude() {
-      return latitude;
-   }
-
-
-   public int getCapacity() {
-      return capacity;
-   }
-
-   
 }
