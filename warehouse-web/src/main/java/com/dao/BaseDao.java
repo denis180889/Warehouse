@@ -29,6 +29,13 @@ public abstract class BaseDao <T extends BaseEntity> {
        session.close();
        return p.getId();
     }
+    
+    public Long remove(T p) {
+       Session session = sessionFactory.openSession();
+       session.delete(p);
+       session.close();
+       return p.getId();
+    }
 
     @SuppressWarnings("unchecked")
     public List<T> list() {
