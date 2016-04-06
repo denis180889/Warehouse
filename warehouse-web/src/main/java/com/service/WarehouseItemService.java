@@ -18,8 +18,7 @@ public class WarehouseItemService {
    }
    
    @Transactional
-   public Long removeGoodFromWarehouse(WarehouseItem warehouseItem){
-      WarehouseItemEntity entity = new WarehouseItemEntity(warehouseItem.getWarehouseId(), warehouseItem.getGoodId(), warehouseItem.getAmount());
-      return warehouseItemDao.remove(entity);
+   public Long removeGoodFromWarehouse(long id , int amount){
+      return warehouseItemDao.decreaseAmount(id, amount);
    }
 }
