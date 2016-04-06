@@ -15,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.dto.Warehouse;
 import com.dto.WarehouseItem;
+import com.dto.WarehouseItemDecreaseAmount;
 import com.dto.common.SingleResult;
 import com.service.WarehouseItemService;
 import com.service.WarehouseService;
@@ -56,9 +57,9 @@ public class WarehouseResource {
 	@POST
    @Path("/removegood")
    @Produces(MediaType.APPLICATION_JSON)
-   public SingleResult removeGoodToWarehouse(@NotNull WarehouseItem warehouseItem) throws SQLException, ClassNotFoundException {
-      Long warehouseId = warehouseItemService.removeGoodFromWarehouse(warehouseItem);
-      return new SingleResult(warehouseId);
+   public SingleResult removeGoodFromWarehouse(@NotNull WarehouseItemDecreaseAmount wIDAmount) throws SQLException, ClassNotFoundException {
+	   Long warehouseItemId = warehouseItemService.removeGoodFromWarehouse(wIDAmount.getId(), wIDAmount.getAmount());
+      return new SingleResult(warehouseItemId);
    }
 
 }

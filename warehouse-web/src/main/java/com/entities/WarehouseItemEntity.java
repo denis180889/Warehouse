@@ -17,7 +17,7 @@ public class WarehouseItemEntity extends BaseEntity {
    private Long id;
    
    private int warehouse_id;
-   
+
    private int good_id;
    
    private int amount;
@@ -38,7 +38,7 @@ public class WarehouseItemEntity extends BaseEntity {
    public int getWarehouseId() {
       return warehouse_id;
    }
-
+   
    public int getGoodId() {
       return good_id;
    }
@@ -47,4 +47,19 @@ public class WarehouseItemEntity extends BaseEntity {
       return amount;
    }
 
+   public void setGood_id(int good_id) {
+      this.good_id = good_id;
+   }
+
+   public void setId(Long id) {
+      this.id = id;
+   }
+
+   public void setWarehouse_id(int warehouse_id) {
+      this.warehouse_id = warehouse_id;
+   }
+
+   public void setAmount(int amount) {
+      this.amount = amount;
+   }
 }

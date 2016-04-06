@@ -13,7 +13,7 @@ import com.entities.BaseEntity;
 public abstract class BaseDao <T extends BaseEntity> {
   
    @Autowired
-   private SessionFactory sessionFactory;
+   protected SessionFactory sessionFactory;
 
    private Class<T> type;
     
@@ -24,13 +24,6 @@ public abstract class BaseDao <T extends BaseEntity> {
     public Long save(T p) {
        Session session = sessionFactory.openSession();
        session.save(p);
-       session.close();
-       return p.getId();
-    }
-    
-    public Long remove(T p) {
-       Session session = sessionFactory.openSession();
-       session.delete(p);
        session.close();
        return p.getId();
     }
