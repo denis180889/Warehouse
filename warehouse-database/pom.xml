@@ -14,7 +14,8 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<flyway.url>jdbc:mysql://localhost:3306/warehouse</flyway.url>
+		<flyway.url>jdbc:mysql://33.33.33.1:1488/warehouse</flyway.url>
+		<!-- <flyway.url>jdbc:mysql://localhost:3306/warehouse</flyway.url> -->
 		<flyway.user>root</flyway.user>
 		<flyway.password>root</flyway.password>
 	</properties>
