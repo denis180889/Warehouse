@@ -12,7 +12,8 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/warehouse" />
+		<property name="url" value="jdbc:mysql://33.33.33.1:1488/warehouse" />
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/warehouse" /> -->
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
@@ -38,7 +39,21 @@
 	<bean id="warehouseDAO" class="com.dao.WarehouseDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="warehouseItemDAO" class="com.dao.WarehouseItemDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="GoodDAO" class="com.dao.GoodDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<bean id="warehouseService" class="com.service.WarehouseService">
+	</bean>
+	
+	<bean id="warehouseItemService" class="com.service.WarehouseItemService">
+	</bean>
+	
+	<bean id="GoodService" class="com.service.GoodService">
 	</bean>
 </beans>

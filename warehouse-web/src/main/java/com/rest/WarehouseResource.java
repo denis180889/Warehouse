@@ -60,4 +60,5 @@ public class WarehouseResource {
       Long warehouseId = warehouseItemService.removeGoodFromWarehouse(warehouseItem);
       return new SingleResult(warehouseId);
    }
+
 }
