@@ -25,6 +25,8 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.entities.WarehouseEntity</value>
+				<value>com.entities.GoodEntity</value>
+				<value>com.entities.WarehouseItemEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
