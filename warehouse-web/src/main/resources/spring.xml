@@ -25,7 +25,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.entities.WarehouseEntity</value>
-				<value>com.entities.GoodEntity</value>
+				<value>com.entities.GoodsEntity</value>
 				<value>com.entities.WarehouseItemEntity</value>
 			</list>
 		</property>
@@ -52,6 +52,6 @@
 	<bean id="warehouseItemService" class="com.service.WarehouseItemService">
 	</bean>
 	
-	<bean id="GoodService" class="com.service.GoodService">
+	<bean id="GoodsService" class="com.service.GoodsService">
 	</bean>
 </beans>

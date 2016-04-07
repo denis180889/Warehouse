@@ -6,23 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import com.dao.GoodDao;
 import com.dto.Good;
-import com.entities.GoodEntity;
+import com.entities.GoodsEntity;
 
-public class GoodService {
+public class GoodsService {
 
    @Autowired
    private GoodDao goodDao; 
    
    @Transactional
    public Long saveGood(Good wh){
-      GoodEntity entity = new GoodEntity(wh.getName(), wh.getDescription());
+      GoodsEntity entity = new GoodsEntity(wh.getName(), wh.getDescription());
       return goodDao.save(entity);
    }
    
    public List<Good> getGoods(){
-      List<GoodEntity> listGe = goodDao.list();
+      List<GoodsEntity> listGe = goodDao.list();
       List<Good> listG = new ArrayList<Good>();
-      for(GoodEntity entity:listGe){
+      for(GoodsEntity entity:listGe){
          listG.add(new Good(entity));
       }
       return listG;
