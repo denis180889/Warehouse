@@ -3,7 +3,7 @@ package com.dto;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import com.entities.GoodEntity;
+import com.entities.GoodsEntity;
 
 /**
  * Represents REST API data model for warehouse
@@ -19,7 +19,7 @@ public class Good {
    public Good() {
    }
    
-   public Good (GoodEntity warehouseEntity){
+   public Good (GoodsEntity warehouseEntity){
       this.name = warehouseEntity.getName();
       this.description = warehouseEntity.getDescription();
    }

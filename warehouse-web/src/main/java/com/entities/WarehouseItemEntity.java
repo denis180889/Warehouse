@@ -16,10 +16,13 @@ public class WarehouseItemEntity extends BaseEntity {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    
+   @Column(name = "warehouse_id")
    private int warehouse_id;
 
+   @Column(name = "good_id")
    private int good_id;
    
+   @Column(name = "amount")
    private int amount;
 
    public WarehouseItemEntity() {

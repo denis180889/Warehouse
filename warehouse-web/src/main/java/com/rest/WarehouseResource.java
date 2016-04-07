@@ -46,7 +46,7 @@ public class WarehouseResource {
 	}
 	
 	@POST
-	@Path("/addgood")
+	@Path("/goods/add")
    @Produces(MediaType.APPLICATION_JSON)
    public SingleResult addGoodToWarehouse(@NotNull WarehouseItem warehouseItem) throws SQLException, ClassNotFoundException {
 
@@ -55,7 +55,7 @@ public class WarehouseResource {
    }
 	
 	@POST
-   @Path("/removegood")
+   @Path("/goods/remove")
    @Produces(MediaType.APPLICATION_JSON)
    public SingleResult removeGoodFromWarehouse(@NotNull WarehouseItemDecreaseAmount wIDAmount) throws SQLException, ClassNotFoundException {
 	   Long warehouseItemId = warehouseItemService.removeGoodFromWarehouse(wIDAmount.getId(), wIDAmount.getAmount());

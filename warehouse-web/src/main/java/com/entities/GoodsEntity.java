@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "goods")
-public class GoodEntity extends BaseEntity {
+public class GoodsEntity extends BaseEntity {
 
    @Id
    @Column(name = "id")
@@ -20,10 +20,10 @@ public class GoodEntity extends BaseEntity {
 
    private String description;
 
-   public GoodEntity() {
+   public GoodsEntity() {
    }
    
-   public GoodEntity(String name, String description) {
+   public GoodsEntity(String name, String description) {
       this.name = name;
       this.description = description;
    }

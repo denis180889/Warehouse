@@ -15,14 +15,14 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.dto.Good;
 import com.dto.common.SingleResult;
-import com.service.GoodService;
+import com.service.GoodsService;
 
 @Path("/good")
 @ComponentScan("com.entities")
-public class GoodResource {
+public class GoodsResource {
 
    @Autowired
-   private GoodService goodService; 
+   private GoodsService goodService; 
    
    @POST
    @Produces(MediaType.APPLICATION_JSON)
