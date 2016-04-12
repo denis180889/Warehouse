@@ -18,7 +18,7 @@ public class WarehouseItemDao extends BaseDao<WarehouseItemEntity> {
       wItemEntity.setAmount(newAmount);
       session.update(wItemEntity);
       Long idR = wItemEntity.getId();
-      session.close();
+      session.flush();
       return idR;
    }
  
