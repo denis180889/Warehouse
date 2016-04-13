@@ -11,7 +11,7 @@ import com.entities.WarehouseEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Warehouse {
+public class Warehouse extends BaseDTO {
 
    private String name;
 
@@ -32,6 +32,15 @@ public class Warehouse {
 	   this.longitude = warehouseEntity.getLongitude();
 	   this.latitude = warehouseEntity.getLatitude();
 	   this.capacity = warehouseEntity.getCapacity();
+   }
+   
+   public Warehouse(String name, String description, float longitude, float latitude, int capacity) {
+      super();
+      this.name = name;
+      this.description = description;
+      this.longitude = longitude;
+      this.latitude = latitude;
+      this.capacity = capacity;
    }
    
    public String getName() {

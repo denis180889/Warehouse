@@ -10,7 +10,7 @@ import com.entities.GoodsEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Good {
+public class Good extends BaseDTO {
 
    private String name;
 
