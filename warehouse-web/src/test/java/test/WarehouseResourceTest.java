@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import com.dto.BaseDTO;
 import com.dto.Warehouse;
+import com.dto.WarehouseItem;
 import com.dto.common.SingleResult;
 
 import utils.DatabaseCleaner;
@@ -37,6 +38,8 @@ public class WarehouseResourceTest {
    public void createClient() throws ClassNotFoundException, SQLException{    
       databaseCleaner = new DatabaseCleaner();
       databaseCleaner.cleanTable("warehouse");
+      databaseCleaner.cleanTable("warehouse_item");
+      databaseCleaner.closeConnection();
       
       Client client = ClientBuilder.newClient();
       this.target = client.target(applicationUrl);     
@@ -58,5 +61,14 @@ public class WarehouseResourceTest {
       response = createGetConnection ("/warehouse");
       List<Object> jsonResponse = response.readEntity(List.class);
       assertEquals(1, jsonResponse.size());
+   }
+   
+   @Test
+   public void addGoodToWarehouseTest(){
+      WarehouseItem warehouseItem = new WarehouseItem(1, 1, 3);
+      response = createPostConnection ("/warehouse/goods/add", warehouseItem);
+      SingleResult result = response.readEntity(SingleResult.class);
+      long id = result.getId();
+      assertEquals(1, id);
    }
 }
