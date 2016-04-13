@@ -18,6 +18,9 @@ public class DatabaseCleaner {
       String cleanTableSQL = "TRUNCATE "+tableName;
       Statement statement  = conn.createStatement();
       statement.executeUpdate(cleanTableSQL);
-      conn.close();
    }
+   
+   public void closeConnection() throws SQLException{
+      conn.close();
+   }  
 }
