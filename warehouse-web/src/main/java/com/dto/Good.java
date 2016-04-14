@@ -24,6 +24,12 @@ public class Good extends BaseDTO {
       this.description = warehouseEntity.getDescription();
    }
    
+   public Good(String name, String description) {
+      super();
+      this.name = name;
+      this.description = description;
+   }
+
    public String getName() {
       return name;
    }
