@@ -15,6 +15,12 @@ public class WarehouseItemDecreaseAmount extends BaseDTO {
    public WarehouseItemDecreaseAmount() {
    }
 
+   public WarehouseItemDecreaseAmount(long id, int amount) {
+      super();
+      this.id = id;
+      this.amount = amount;
+   }
+   
    public long getId() {
       return id;
    }

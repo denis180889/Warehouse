@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.dto.BaseDTO;
 import com.dto.Warehouse;
 import com.dto.WarehouseItem;
+import com.dto.WarehouseItemDecreaseAmount;
 import com.dto.common.SingleResult;
 
 import utils.DatabaseCleaner;
@@ -20,19 +21,7 @@ import static junit.framework.Assert.*;
 import java.sql.SQLException;
 import java.util.List;
 
-public class WarehouseResourceTest {
-   DatabaseCleaner databaseCleaner;
-   Response response;
-   WebTarget target;
-   String applicationUrl = "http://localhost:8080/warehouse-web/rest";
-   
-   public Response createPostConnection(String path, BaseDTO dto) {
-      return target.path(path).request(MediaType.APPLICATION_JSON).post(Entity.json(dto));
-   }
-   
-   public Response createGetConnection(String path) {
-      return target.path(path).request(MediaType.APPLICATION_JSON).get();
-   }
+public class WarehouseResourceTests extends BaseTest {
    
    @Before
    public void createClient() throws ClassNotFoundException, SQLException{    
@@ -67,6 +56,17 @@ public class WarehouseResourceTest {
    public void addGoodToWarehouseTest(){
       WarehouseItem warehouseItem = new WarehouseItem(1, 1, 3);
       response = createPostConnection ("/warehouse/goods/add", warehouseItem);
+      SingleResult result = response.readEntity(SingleResult.class);
+      long id = result.getId();
+      assertEquals(1, id);
+   }
+   
+   @Test
+   public void removeGoodFromWarehouseTest(){
+      WarehouseItem warehouseItem = new WarehouseItem(1, 1, 3);
+      createPostConnection ("/warehouse/goods/add", warehouseItem);
+      WarehouseItemDecreaseAmount warehouseDecrease = new WarehouseItemDecreaseAmount(1, 1);
+      response = createPostConnection ("/warehouse/goods/remove", warehouseDecrease);
       SingleResult result = response.readEntity(SingleResult.class);
       long id = result.getId();
       assertEquals(1, id);
