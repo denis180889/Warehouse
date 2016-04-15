@@ -1,6 +1,6 @@
-package test;
+package integration;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.util.List;
 import javax.ws.rs.client.Client;

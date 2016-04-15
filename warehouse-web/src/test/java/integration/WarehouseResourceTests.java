@@ -1,14 +1,9 @@
-package test;
+package integration;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import org.junit.Before;
 import org.junit.Test;
-import com.dto.BaseDTO;
 import com.dto.Warehouse;
 import com.dto.WarehouseItem;
 import com.dto.WarehouseItemDecreaseAmount;
@@ -16,7 +11,9 @@ import com.dto.common.SingleResult;
 
 import utils.DatabaseCleaner;
 
-import static junit.framework.Assert.*;
+import org.junit.Assert.*;
+
+import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -40,7 +37,7 @@ public class WarehouseResourceTests extends BaseTest {
       response = createPostConnection ("/warehouse", warehouse);
       SingleResult result = response.readEntity(SingleResult.class);
       long id = result.getId();
-      assertEquals(1, id);
+      assertEquals(1L, id);
    }
    
    @Test

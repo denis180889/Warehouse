@@ -1,4 +1,4 @@
-package test;
+package integration;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
