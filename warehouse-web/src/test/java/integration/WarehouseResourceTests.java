@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.util.List;
 
-public class WarehouseResourceTests extends BaseTest {
+public class WarehouseResourceTests extends BaseIntegrationTest {
    
    @Before
    public void createClient() throws ClassNotFoundException, SQLException{    

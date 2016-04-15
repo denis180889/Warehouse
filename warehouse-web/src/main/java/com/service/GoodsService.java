@@ -13,6 +13,10 @@ public class GoodsService {
    @Autowired
    private GoodDao goodDao; 
    
+   public void setGoodDao(GoodDao goodDao) {
+      this.goodDao = goodDao;
+   }
+
    @Transactional
    public Long saveGood(Good wh){
       GoodsEntity entity = new GoodsEntity(wh.getName(), wh.getDescription());

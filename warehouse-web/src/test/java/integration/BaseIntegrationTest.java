@@ -9,7 +9,7 @@ import com.dto.BaseDTO;
 
 import utils.DatabaseCleaner;
 
-public class BaseTest {
+public class BaseIntegrationTest {
 
    protected DatabaseCleaner databaseCleaner;
    protected Response response;
