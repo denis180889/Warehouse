@@ -1,22 +1,22 @@
 package integration;
 
+import static org.junit.Assert.assertEquals;
+
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import com.dto.Warehouse;
 import com.dto.WarehouseItem;
 import com.dto.WarehouseItemDecreaseAmount;
 import com.dto.common.SingleResult;
 
 import utils.DatabaseCleaner;
-
-import org.junit.Assert.*;
-
-import static org.junit.Assert.*;
-
-import java.sql.SQLException;
-import java.util.List;
 
 public class WarehouseResourceTests extends BaseIntegrationTest {
    

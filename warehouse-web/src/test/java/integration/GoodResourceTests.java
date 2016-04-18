@@ -1,14 +1,19 @@
 package integration;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import com.dto.Good;
 import com.dto.common.SingleResult;
+
 import utils.DatabaseCleaner;
 
 public class GoodResourceTests extends BaseIntegrationTest {

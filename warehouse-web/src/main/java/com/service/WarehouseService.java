@@ -14,7 +14,11 @@ public class WarehouseService {
 	@Autowired
 	private WarehouseDao warehouseDao; 
 	
-	@Transactional
+	public void setWarehouseDao(WarehouseDao warehouseDao) {
+      this.warehouseDao = warehouseDao;
+   }
+
+   @Transactional
 	public Long saveWarehouse(Warehouse wh){
 		WarehouseEntity entity = new WarehouseEntity(wh.getName(), wh.getDescription(), wh.getLongitude(), wh.getLatitude(), wh.getCapacity());
 		return warehouseDao.save(entity);
