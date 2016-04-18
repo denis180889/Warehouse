@@ -12,7 +12,8 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/warehouse" />
+		<property name="url" value="jdbc:mysql://33.33.33.1:1488/warehouse" />
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/warehouse" /> -->
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
@@ -24,6 +25,8 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.entities.WarehouseEntity</value>
+				<value>com.entities.GoodsEntity</value>
+				<value>com.entities.WarehouseItemEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -32,13 +35,23 @@
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="com.byteslounge.spring.tx.model" />
 	</bean>
 
 	<bean id="warehouseDAO" class="com.dao.WarehouseDao">
-		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="warehouseItemDAO" class="com.dao.WarehouseItemDao">
+	</bean>
+	
+	<bean id="GoodDAO" class="com.dao.GoodDao">
 	</bean>
 
 	<bean id="warehouseService" class="com.service.WarehouseService">
+	</bean>
+	
+	<bean id="warehouseItemService" class="com.service.WarehouseItemService">
+	</bean>
+	
+	<bean id="GoodsService" class="com.service.GoodsService">
 	</bean>
 </beans>

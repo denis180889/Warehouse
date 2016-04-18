@@ -5,17 +5,15 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entities.BaseEntity;
 
 
 public abstract class BaseDao <T extends BaseEntity> {
   
-    protected SessionFactory sessionFactory;
-    
-    public void setSessionFactory(SessionFactory sessionFactory) {
-      this.sessionFactory = sessionFactory;
-   }
+   @Autowired
+   protected SessionFactory sessionFactory;
 
    private Class<T> type;
     

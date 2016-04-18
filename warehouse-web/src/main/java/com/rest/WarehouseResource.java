@@ -14,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.dto.Warehouse;
+import com.dto.WarehouseItem;
+import com.dto.WarehouseItemDecreaseAmount;
 import com.dto.common.SingleResult;
+import com.service.WarehouseItemService;
 import com.service.WarehouseService;
 
 @Path("/warehouse")
@@ -23,6 +26,10 @@ public class WarehouseResource {
 	
 	@Autowired
 	private WarehouseService warehouseService; 
+	
+	@Autowired
+   private WarehouseItemService warehouseItemService; 
+	
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -37,4 +44,22 @@ public class WarehouseResource {
 	public List<Warehouse> getWarehouses() throws ClassNotFoundException, SQLException {
 		return warehouseService.getWarehouses();
 	}
+	
+	@POST
+	@Path("/goods/add")
+   @Produces(MediaType.APPLICATION_JSON)
+   public SingleResult addGoodToWarehouse(@NotNull WarehouseItem warehouseItem) throws SQLException, ClassNotFoundException {
+
+      Long warehouseId = warehouseItemService.addGoodToWarehouse(warehouseItem);
+      return new SingleResult(warehouseId);
+   }
+	
+	@POST
+   @Path("/goods/remove")
+   @Produces(MediaType.APPLICATION_JSON)
+   public SingleResult removeGoodFromWarehouse(@NotNull WarehouseItemDecreaseAmount wIDAmount) throws SQLException, ClassNotFoundException {
+	   Long warehouseItemId = warehouseItemService.removeGoodFromWarehouse(wIDAmount.getId(), wIDAmount.getAmount());
+      return new SingleResult(warehouseItemId);
+   }
+
 }
