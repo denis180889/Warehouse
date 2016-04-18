@@ -1,9 +1,12 @@
 package unit;
 
 import org.mockito.Mock;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.mockito.MockitoAnnotations;
 import com.dao.GoodDao;
 import com.dto.Good;
@@ -16,28 +19,38 @@ public class GoodsServiceTests {
 
    @Mock
    GoodDao goodDao;
-   
    GoodsService goodsService;
-   GoodsEntity entity;
-   Good good;
+   
    
    @Before
    public void initializeMocks(){
       MockitoAnnotations.initMocks(this);
       goodsService = new GoodsService();
-      good = new Good("banana", "very sweet");
-      entity = new GoodsEntity(good.getName(), good.getDescription());
+      goodsService.setGoodDao(goodDao);
    }
    
    @Test
    public void saveGoodTest(){
-      goodsService.setGoodDao(goodDao);
+      Good good = new Good("banana", "very sweet");
       
-      when(goodDao.save(entity)).thenReturn(1L);
+      when(goodDao.save(any(GoodsEntity.class))).thenReturn(1L);
       long id = goodsService.saveGood(good);
       assertEquals(1L, id);
-      
-      
    }
    
+   @Test
+   public void getGoodsTest(){
+      List<GoodsEntity> listGe = Arrays.asList(new GoodsEntity("name1", "desc1"), new GoodsEntity("name2", "desc2"));
+      
+      when(goodDao.list()).thenReturn(listGe);
+      List<Good> listG = goodsService.getGoods();
+      
+      assertEquals(listG.size(), listGe.size());
+      for(int i =0; i<2; i++){
+            assertEquals(listGe.get(i).getName(), listG.get(i).getName());
+            assertEquals(listGe.get(i).getDescription(), listG.get(i).getDescription());
+         }
+      }
+
 }
+
