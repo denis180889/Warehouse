@@ -14,7 +14,7 @@ import com.dto.Warehouse;
 import com.entities.WarehouseEntity;
 import com.service.WarehouseService;
 
-public class WarehouseServiceTest {
+public class WarehouseServiceTests {
 
    @Mock
    WarehouseDao warehouseDao; 
