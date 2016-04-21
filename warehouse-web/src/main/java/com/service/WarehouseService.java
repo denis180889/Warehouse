@@ -12,11 +12,7 @@ import com.entities.WarehouseEntity;
 public class WarehouseService {
 
 	@Autowired
-	private WarehouseDao warehouseDao; 
-	
-	public void setWarehouseDao(WarehouseDao warehouseDao) {
-      this.warehouseDao = warehouseDao;
-   }
+	WarehouseDao warehouseDao; 
 
    @Transactional
 	public Long saveWarehouse(Warehouse wh){

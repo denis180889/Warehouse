@@ -1,5 +1,6 @@
 package unit;
 
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -19,18 +20,17 @@ public class GoodsServiceTests {
 
    @Mock
    GoodDao goodDao;
-   GoodsService goodsService;
    
+   @InjectMocks
+   GoodsService goodsService;
    
    @Before
    public void initializeMocks(){
       MockitoAnnotations.initMocks(this);
-      goodsService = new GoodsService();
-      goodsService.setGoodDao(goodDao);
    }
    
    @Test
-   public void saveGoodTest(){
+   public void saveGood(){
       Good good = new Good("banana", "very sweet");
       
       when(goodDao.save(any(GoodsEntity.class))).thenReturn(1L);
@@ -39,7 +39,7 @@ public class GoodsServiceTests {
    }
    
    @Test
-   public void getGoodsTest(){
+   public void getGoods(){
       List<GoodsEntity> listGe = Arrays.asList(new GoodsEntity("name1", "desc1"), new GoodsEntity("name2", "desc2"));
       
       when(goodDao.list()).thenReturn(listGe);

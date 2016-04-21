@@ -32,7 +32,7 @@ public class WarehouseResourceTests extends BaseIntegrationTest {
    }
    
    @Test
-   public void createWarehouseTest(){
+   public void createWarehouse(){
       Warehouse warehouse = new Warehouse("testName", "testDescription", 1, 2, 3);
       response = createPostConnection ("/warehouse", warehouse);
       SingleResult result = response.readEntity(SingleResult.class);
@@ -41,7 +41,7 @@ public class WarehouseResourceTests extends BaseIntegrationTest {
    }
    
    @Test
-   public void getWarehousesTest(){
+   public void getWarehouses(){
       Warehouse warehouse = new Warehouse("testName", "testDescription", 1, 2, 3);
       createPostConnection ("/warehouse", warehouse);
       response = createGetConnection ("/warehouse");
@@ -50,7 +50,7 @@ public class WarehouseResourceTests extends BaseIntegrationTest {
    }
    
    @Test
-   public void addGoodToWarehouseTest(){
+   public void addGoodToWarehouse(){
       WarehouseItem warehouseItem = new WarehouseItem(1, 1, 3);
       response = createPostConnection ("/warehouse/goods/add", warehouseItem);
       SingleResult result = response.readEntity(SingleResult.class);
@@ -59,7 +59,7 @@ public class WarehouseResourceTests extends BaseIntegrationTest {
    }
    
    @Test
-   public void removeGoodFromWarehouseTest(){
+   public void removeGoodFromWarehouse(){
       WarehouseItem warehouseItem = new WarehouseItem(1, 1, 3);
       createPostConnection ("/warehouse/goods/add", warehouseItem);
       WarehouseItemDecreaseAmount warehouseDecrease = new WarehouseItemDecreaseAmount(1, 1);

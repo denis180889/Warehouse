@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import com.dao.WarehouseDao;
@@ -18,17 +19,17 @@ public class WarehouseServiceTests {
 
    @Mock
    WarehouseDao warehouseDao; 
+   
+   @InjectMocks
    WarehouseService warehouseService;
    
    @Before
    public void initializeMocks(){
       MockitoAnnotations.initMocks(this);
-      warehouseService = new WarehouseService();
-      warehouseService.setWarehouseDao(warehouseDao);
    }
    
    @Test
-   public void saveWarehouseTest(){
+   public void saveWarehouse(){
       Warehouse warehouse = new Warehouse("name", "desc", 1, 1, 1);
       
       when(warehouseDao.save(any(WarehouseEntity.class))).thenReturn(1L);
@@ -37,7 +38,7 @@ public class WarehouseServiceTests {
    }
    
    @Test
-   public void getWarehousesTest(){
+   public void getWarehouses(){
       List<WarehouseEntity> listWe = Arrays.asList(new WarehouseEntity("name1", "desc1",1,1,1), new WarehouseEntity("name2", "desc2",2,2,2));
       
       when(warehouseDao.list()).thenReturn(listWe);

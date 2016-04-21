@@ -11,11 +11,10 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://33.33.33.1:1488/warehouse" />
-		<!-- <property name="url" value="jdbc:mysql://localhost:3306/warehouse" /> -->
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
 
 	<!-- Hibernate 3 Annotation SessionFactory Bean definition -->
@@ -39,19 +38,25 @@
 
 	<bean id="warehouseDAO" class="com.dao.WarehouseDao">
 	</bean>
-	
+
 	<bean id="warehouseItemDAO" class="com.dao.WarehouseItemDao">
 	</bean>
-	
+
 	<bean id="GoodDAO" class="com.dao.GoodDao">
 	</bean>
 
 	<bean id="warehouseService" class="com.service.WarehouseService">
 	</bean>
-	
+
 	<bean id="warehouseItemService" class="com.service.WarehouseItemService">
 	</bean>
-	
+
 	<bean id="GoodsService" class="com.service.GoodsService">
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:conf/app.properties</value>
+		</property>
 	</bean>
 </beans>

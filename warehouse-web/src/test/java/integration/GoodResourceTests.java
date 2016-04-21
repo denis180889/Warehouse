@@ -29,7 +29,7 @@ public class GoodResourceTests extends BaseIntegrationTest {
    }
 
    @Test
-   public void createGoodTest() {
+   public void createGood() {
       Good good = new Good("banana", "very sweet");
       response = createPostConnection("/good", good);
       SingleResult result = response.readEntity(SingleResult.class);
@@ -38,7 +38,7 @@ public class GoodResourceTests extends BaseIntegrationTest {
    }
 
    @Test
-   public void getGoodsTest() {
+   public void getGoods() {
       Good good = new Good("banana", "very sweet");
       createPostConnection("/good", good);
       response = createGetConnection("/good");

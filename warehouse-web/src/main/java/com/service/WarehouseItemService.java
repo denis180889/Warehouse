@@ -9,12 +9,8 @@ import com.entities.WarehouseItemEntity;
 public class WarehouseItemService {
 
    @Autowired
-   private WarehouseItemDao warehouseItemDao; 
+   WarehouseItemDao warehouseItemDao; 
    
-   public void setWarehouseItemDao(WarehouseItemDao warehouseItemDao) {
-      this.warehouseItemDao = warehouseItemDao;
-   }
-
    @Transactional
    public Long addGoodToWarehouse(WarehouseItem warehouseItem){
       WarehouseItemEntity entity = new WarehouseItemEntity(warehouseItem.getWarehouseId(), warehouseItem.getGoodId(), warehouseItem.getAmount());

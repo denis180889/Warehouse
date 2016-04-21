@@ -11,11 +11,7 @@ import com.entities.GoodsEntity;
 public class GoodsService {
 
    @Autowired
-   private GoodDao goodDao; 
-   
-   public void setGoodDao(GoodDao goodDao) {
-      this.goodDao = goodDao;
-   }
+   GoodDao goodDao; 
 
    @Transactional
    public Long saveGood(Good wh){

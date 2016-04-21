@@ -5,6 +5,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import com.dao.WarehouseItemDao;
@@ -16,18 +17,18 @@ public class WarehouseItemServiceTests {
       
    @Mock
    WarehouseItemDao warehouseItemDao; 
+   
+   @InjectMocks
    WarehouseItemService warehouseItemService;
    
    
    @Before
    public void initializeMocks(){
       MockitoAnnotations.initMocks(this);
-      warehouseItemService = new WarehouseItemService();
-      warehouseItemService.setWarehouseItemDao(warehouseItemDao);
    }
    
    @Test
-   public void addGoodToWarehouseTest(){
+   public void addGoodToWarehouse(){
       WarehouseItem warehouse = new WarehouseItem(1, 1, 1);
       
       when(warehouseItemDao.save(any(WarehouseItemEntity.class))).thenReturn(1L);
@@ -36,7 +37,7 @@ public class WarehouseItemServiceTests {
    }
    
    @Test
-   public void removeGoodFromWarehouseTest(){
+   public void removeGoodFromWarehouse(){
       
       when(warehouseItemDao.decreaseAmount(any(Long.class),any(Integer.class))).thenReturn(1L);
       long id = warehouseItemService.removeGoodFromWarehouse(1, 1);
