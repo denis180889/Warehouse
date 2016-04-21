@@ -1,5 +1,6 @@
 package com.util;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -16,7 +17,7 @@ public class PropertiesContext {
       String propFileName = "app.properties";
       generalMap = new Properties();
       try {
-         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+         InputStream inputStream = new FileInputStream(propFileName);
          generalMap.load(inputStream);
          inputStream.close();
       } catch (IOException e) {
