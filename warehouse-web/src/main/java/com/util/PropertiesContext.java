@@ -6,8 +6,6 @@ import java.util.Properties;
 
 public class PropertiesContext {
 
-   private static PropertiesContext instance;
-
    private PropertiesContext() {
       init();
    }
@@ -24,13 +22,6 @@ public class PropertiesContext {
       } catch (IOException e) {
          e.getMessage();
       }
-   }
-
-   public static PropertiesContext getPropertContext() {
-      if (instance == null) {
-         instance = new PropertiesContext();
-      }
-      return instance;
    }
 
    public String getProperty(String key) {

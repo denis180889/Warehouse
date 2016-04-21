@@ -50,6 +50,9 @@
 
 	<bean id="warehouseItemService" class="com.service.WarehouseItemService">
 	</bean>
+	
+	<bean id="properiesContext" class="com.util.PropertiesContext">
+	</bean>
 
 	<bean id="GoodsService" class="com.service.GoodsService">
 	</bean>
