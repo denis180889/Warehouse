@@ -7,6 +7,8 @@ import java.util.Properties;
 
 public class PropertiesContext {
 
+   private static PropertiesContext instance;
+
    private PropertiesContext() {
       init();
    }
@@ -27,5 +29,12 @@ public class PropertiesContext {
 
    public String getProperty(String key) {
       return (String) generalMap.get(key);
+   }
+
+   public static PropertiesContext getPropertiesContext() {
+      if (instance == null) {
+         instance = new PropertiesContext();
+      }
+      return instance;
    }
 }

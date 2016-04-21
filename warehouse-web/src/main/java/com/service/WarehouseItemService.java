@@ -9,7 +9,7 @@ import com.entities.WarehouseItemEntity;
 public class WarehouseItemService {
 
    @Autowired
-   WarehouseItemDao warehouseItemDao; 
+   private WarehouseItemDao warehouseItemDao; 
    
    @Transactional
    public Long addGoodToWarehouse(WarehouseItem warehouseItem){

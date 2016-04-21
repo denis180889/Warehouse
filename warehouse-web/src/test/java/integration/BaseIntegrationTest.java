@@ -6,6 +6,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.dto.BaseDTO;
 import com.util.PropertiesContext;
@@ -13,14 +15,11 @@ import com.util.PropertiesContext;
 import utils.DatabaseCleaner;
 
 public class BaseIntegrationTest {
-
-   @Autowired
-   PropertiesContext propertiesContext;
    
    protected DatabaseCleaner databaseCleaner;
    protected Response response;
    protected WebTarget target;
-   protected String applicationUrl = propertiesContext.getProperty("app.url");
+   protected String applicationUrl = PropertiesContext.getPropertiesContext().getProperty("app.url");
    
    public Response createPostConnection(String path, BaseDTO dto) {
       return target.path(path).request(MediaType.APPLICATION_JSON).post(Entity.json(dto));
