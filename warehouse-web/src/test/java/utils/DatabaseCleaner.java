@@ -11,8 +11,8 @@ public class DatabaseCleaner {
 
    public DatabaseCleaner() throws ClassNotFoundException, SQLException {
       Class.forName("com.mysql.jdbc.Driver");
-      conn = DriverManager.getConnection("jdbc:mysql://33.33.33.1:1488/warehouse", "root", "root");
-//    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/warehouse", "root", "root");
+//      conn = DriverManager.getConnection("jdbc:mysql://33.33.33.1:1488/warehouse", "root", "root");
+    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/warehouse", "root", "root");
    }
 
    public void cleanTable(String tableName) throws SQLException {

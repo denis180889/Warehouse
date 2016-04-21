@@ -16,7 +16,7 @@ public class PropertiesContext {
    private Properties generalMap;
 
    private void init() {
-      String propFileName = "app.properties";
+      String propFileName = "/conf/app.properties";
       generalMap = new Properties();
       try {
          InputStream inputStream = getClass().getResourceAsStream(propFileName);
