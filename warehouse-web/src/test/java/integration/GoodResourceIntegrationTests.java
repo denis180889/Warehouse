@@ -15,23 +15,21 @@ import com.dto.Good;
 import com.dto.common.SingleResult;
 
 import utils.DatabaseCleaner;
+import utils.Path;
 
-public class GoodResourceTests extends BaseIntegrationTest {
+public class GoodResourceIntegrationTests extends BaseIntegrationTest {
 
    @Before
    public void createClient() throws ClassNotFoundException, SQLException {
-      databaseCleaner = new DatabaseCleaner();
-      databaseCleaner.cleanTable("goods");
-      databaseCleaner.closeConnection();
-
       Client client = ClientBuilder.newClient();
       this.target = client.target(applicationUrl);
    }
 
    @Test
    public void createGood() {
+      DatabaseCleaner.cleanTable("goods");
       Good good = new Good("banana", "very sweet");
-      response = createPostConnection("/good", good);
+      response = post(Path.GOOD, good);
       SingleResult result = response.readEntity(SingleResult.class);
       long id = result.getId();
       assertEquals(1, id);
@@ -39,9 +37,10 @@ public class GoodResourceTests extends BaseIntegrationTest {
 
    @Test
    public void getGoods() {
+      DatabaseCleaner.cleanTable("goods");
       Good good = new Good("banana", "very sweet");
-      createPostConnection("/good", good);
-      response = createGetConnection("/good");
+      post(Path.GOOD, good);
+      response = get(Path.GOOD);
       List<Object> jsonResponse = response.readEntity(List.class);
       assertEquals(1, jsonResponse.size());
    }

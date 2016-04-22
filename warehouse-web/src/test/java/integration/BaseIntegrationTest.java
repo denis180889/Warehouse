@@ -17,11 +17,11 @@ public class BaseIntegrationTest {
    protected WebTarget target;
    protected String applicationUrl = PropertiesContext.getPropertiesContext().getProperty("app.url");
    
-   public Response createPostConnection(String path, BaseDTO dto) {
+   public Response post(String path, BaseDTO dto) {
       return target.path(path).request(MediaType.APPLICATION_JSON).post(Entity.json(dto));
    }
    
-   public Response createGetConnection(String path) {
+   public Response get(String path) {
       return target.path(path).request(MediaType.APPLICATION_JSON).get();
    }
    
