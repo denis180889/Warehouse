@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 import com.entities.GoodsEntity;
 
 @Component
-public class GoodDao extends BaseDao<GoodsEntity> {
+public class GoodsDao extends BaseDao<GoodsEntity> {
 
-   public GoodDao() {
+   public GoodsDao() {
       super(GoodsEntity.class);
    }
 

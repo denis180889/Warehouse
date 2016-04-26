@@ -11,7 +11,7 @@ import javax.ws.rs.client.ClientBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dto.Good;
+import com.dto.Goods;
 import com.dto.common.SingleResult;
 
 import utils.DatabaseCleaner;
@@ -28,8 +28,8 @@ public class GoodResourceIntegrationTests extends BaseIntegrationTest {
    @Test
    public void createGood() {
       DatabaseCleaner.cleanTable("goods");
-      Good good = new Good("banana", "very sweet");
-      response = post(Path.GOOD, good);
+      Goods goods = new Goods("banana", "very sweet");
+      response = post(Path.GOOD, goods);
       SingleResult result = response.readEntity(SingleResult.class);
       long id = result.getId();
       assertEquals(1, id);
@@ -38,8 +38,8 @@ public class GoodResourceIntegrationTests extends BaseIntegrationTest {
    @Test
    public void getGoods() {
       DatabaseCleaner.cleanTable("goods");
-      Good good = new Good("banana", "very sweet");
-      post(Path.GOOD, good);
+      Goods goods = new Goods("banana", "very sweet");
+      post(Path.GOOD, goods);
       response = get(Path.GOOD);
       List<Object> jsonResponse = response.readEntity(List.class);
       assertEquals(1, jsonResponse.size());

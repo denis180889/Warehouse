@@ -13,15 +13,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.dao.GoodDao;
-import com.dto.Good;
+import com.dao.GoodsDao;
+import com.dto.Goods;
 import com.entities.GoodsEntity;
 import com.service.GoodsService;
 
 public class GoodsServiceTests {
 
    @Mock
-   GoodDao goodDao;
+   GoodsDao goodDao;
    
    @InjectMocks
    GoodsService goodsService;
@@ -33,7 +33,7 @@ public class GoodsServiceTests {
    
    @Test
    public void saveGood(){
-      Good good = new Good("banana", "very sweet");
+      Goods good = new Goods("banana", "very sweet");
       
       when(goodDao.save(any(GoodsEntity.class))).thenReturn(1L);
       long id = goodsService.saveGood(good);
@@ -45,7 +45,7 @@ public class GoodsServiceTests {
       List<GoodsEntity> listGe = Arrays.asList(new GoodsEntity("name1", "desc1"), new GoodsEntity("name2", "desc2"));
       
       when(goodDao.list()).thenReturn(listGe);
-      List<Good> listG = goodsService.getGoods();
+      List<Goods> listG = goodsService.getGoods();
       
       assertEquals(listG.size(), listGe.size());
       for(int i =0; i<2; i++){
