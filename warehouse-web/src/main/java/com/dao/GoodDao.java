@@ -1,7 +1,6 @@
 package com.dao;
 
 import org.springframework.stereotype.Component;
-
 import com.entities.GoodsEntity;
 
 @Component
