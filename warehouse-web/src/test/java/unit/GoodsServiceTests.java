@@ -21,7 +21,7 @@ import com.service.GoodsService;
 public class GoodsServiceTests {
 
    @Mock
-   GoodsDao goodDao;
+   GoodsDao goodsDao;
    
    @InjectMocks
    GoodsService goodsService;
@@ -35,7 +35,7 @@ public class GoodsServiceTests {
    public void saveGood(){
       Goods good = new Goods("banana", "very sweet");
       
-      when(goodDao.save(any(GoodsEntity.class))).thenReturn(1L);
+      when(goodsDao.save(any(GoodsEntity.class))).thenReturn(1L);
       long id = goodsService.saveGood(good);
       assertEquals(1L, id);
    }
@@ -44,7 +44,7 @@ public class GoodsServiceTests {
    public void getGoods(){
       List<GoodsEntity> listGe = Arrays.asList(new GoodsEntity("name1", "desc1"), new GoodsEntity("name2", "desc2"));
       
-      when(goodDao.list()).thenReturn(listGe);
+      when(goodsDao.list()).thenReturn(listGe);
       List<Goods> listG = goodsService.getGoods();
       
       assertEquals(listG.size(), listGe.size());

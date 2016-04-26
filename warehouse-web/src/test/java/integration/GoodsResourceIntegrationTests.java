@@ -17,7 +17,7 @@ import com.dto.common.SingleResult;
 import utils.DatabaseCleaner;
 import utils.Path;
 
-public class GoodResourceIntegrationTests extends BaseIntegrationTest {
+public class GoodsResourceIntegrationTests extends BaseIntegrationTest {
 
    @Before
    public void createClient() throws ClassNotFoundException, SQLException {
