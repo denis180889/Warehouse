@@ -41,7 +41,7 @@
 	<bean id="warehouseItemDAO" class="com.dao.WarehouseItemDao">
 	</bean>
 
-	<bean id="goodDAO" class="com.dao.GoodDao">
+	<bean id="goodsDao" class="com.dao.GoodsDao">
 	</bean>
 
 	<bean id="warehouseService" class="com.service.WarehouseService">
@@ -51,6 +51,9 @@
 	</bean>
 
 	<bean id="goodsService" class="com.service.GoodsService">
+	</bean>
+
+	<bean id="warehouseValidator" class="com.validators.WarehouseValidator">
 	</bean>
 
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

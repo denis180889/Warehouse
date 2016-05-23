@@ -22,19 +22,19 @@ import com.service.GoodsService;
 public class GoodsResource {
 
    @Autowired
-   private GoodsService goodService; 
+   private GoodsService goodsService; 
    
    @POST
    @Produces(MediaType.APPLICATION_JSON)
    public SingleResult createGoods(@NotNull Goods goods) throws SQLException, ClassNotFoundException {
 
-      Long goodId = goodService.saveGood(goods);
+      Long goodId = goodsService.saveGood(goods);
       return new SingleResult(goodId);
    }
 
    @GET
    @Produces(MediaType.APPLICATION_JSON)
    public List<Goods> getGoods() throws ClassNotFoundException, SQLException {
-      return goodService.getGoods();
+      return goodsService.getGoods();
    }
 }

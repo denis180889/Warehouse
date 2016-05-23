@@ -11,16 +11,16 @@ import com.entities.GoodsEntity;
 public class GoodsService {
 
    @Autowired
-   private GoodsDao goodDao; 
+   private GoodsDao goodsDao; 
    
    @Transactional
    public Long saveGood(Goods wh){
       GoodsEntity entity = new GoodsEntity(wh.getName(), wh.getDescription());
-      return goodDao.save(entity);
+      return goodsDao.save(entity);
    }
    
    public List<Goods> getGoods(){
-      List<GoodsEntity> listGe = goodDao.list();
+      List<GoodsEntity> listGe = goodsDao.list();
       List<Goods> listG = new ArrayList<Goods>();
       for(GoodsEntity entity:listGe){
          listG.add(new Goods(entity));
