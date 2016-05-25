@@ -55,6 +55,9 @@
 
 	<bean id="warehouseValidator" class="com.validators.WarehouseValidator">
 	</bean>
+	
+	<bean id="goodsValidator" class="com.validators.GoodsValidator">
+	</bean>
 
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">

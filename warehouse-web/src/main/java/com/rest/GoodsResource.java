@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.dto.Goods;
 import com.dto.common.SingleResult;
@@ -26,10 +28,15 @@ public class GoodsResource {
    
    @POST
    @Produces(MediaType.APPLICATION_JSON)
-   public SingleResult createGoods(@NotNull Goods goods) throws SQLException, ClassNotFoundException {
-
-      Long goodId = goodsService.saveGood(goods);
-      return new SingleResult(goodId);
+   public ResponseEntity<String> createGoods(@NotNull Goods goods) throws SQLException, ClassNotFoundException {
+      String body = goodsService.saveGood(goods);
+      if(body.contains("ERROR_CODE")){
+         return new ResponseEntity<String>(body.toString(),HttpStatus.BAD_REQUEST);
+      }
+      else{
+         return new ResponseEntity<String>(body.toString(),HttpStatus.OK);
+      }
+     
    }
 
    @GET
