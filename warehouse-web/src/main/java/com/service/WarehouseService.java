@@ -18,29 +18,30 @@ public class WarehouseService {
 
    @Autowired
    private WarehouseValidator warehouseValidator;
-   
-	@Autowired
-	private WarehouseDao warehouseDao; 
+
+   @Autowired
+   private WarehouseDao warehouseDao;
 
    @Transactional
-	public Long saveWarehouse(Warehouse wh){
+	public String saveWarehouse(Warehouse wh){
       BeanPropertyBindingResult result = new BeanPropertyBindingResult(wh, "Warehouse");
       ValidationUtils.invokeValidator(warehouseValidator, wh, result);
       List<ObjectError> errors = result.getAllErrors();
-      
-      
-      
-		WarehouseEntity entity = new WarehouseEntity(wh.getName(), wh.getDescription(), wh.getLongitude(), wh.getLatitude(), wh.getCapacity());    
-      
-		return warehouseDao.save(entity);
+      if(!result.hasErrors()){
+         WarehouseEntity entity = new WarehouseEntity(wh.getName(), wh.getDescription(), wh.getLongitude(), wh.getLatitude(), wh.getCapacity());    
+		   return warehouseDao.save(entity).toString();
+      }
+      else{
+         return "ERROR_CODE : " + errors.get(0).getCode();
+      }
 	}
-	
-	public List<Warehouse> getWarehouses(){
-		List<WarehouseEntity> listWE = warehouseDao.list();
-		List<Warehouse> listW = new ArrayList<Warehouse>();
-		for(WarehouseEntity entity:listWE){
-			listW.add(new Warehouse(entity));
-		}
+
+   public List<Warehouse> getWarehouses() {
+      List<WarehouseEntity> listWE = warehouseDao.list();
+      List<Warehouse> listW = new ArrayList<Warehouse>();
+      for (WarehouseEntity entity : listWE) {
+         listW.add(new Warehouse(entity));
+      }
 		return listW;
 	}
 }

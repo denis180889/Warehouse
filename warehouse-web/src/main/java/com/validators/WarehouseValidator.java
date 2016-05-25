@@ -14,12 +14,12 @@ public class WarehouseValidator implements Validator {
   }
 
   public void validate(Object obj, Errors e) {
-      ValidationUtils.rejectIfEmpty(e, "name", "name.empty");
+      ValidationUtils.rejectIfEmpty(e, "name", "EMPTY_NAME");
       Warehouse w = (Warehouse) obj;
       if (w.getLatitude() > 90 || w.getLatitude() < -90 ) {
-          e.rejectValue("latitude", "wrongValue");
+          e.rejectValue("latitude", "INVALID_LATITUDE");
       } else if (w.getLongitude() > 180 || w.getLongitude() < -180) {
-          e.rejectValue("longitude", "wrongValue");
+          e.rejectValue("longitude", "INVALID_LONGTITUDE");
       }
   }
 

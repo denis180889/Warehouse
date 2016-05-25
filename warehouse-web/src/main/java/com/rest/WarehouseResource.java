@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.dto.Warehouse;
 import com.dto.WarehouseItem;
@@ -33,10 +35,14 @@ public class WarehouseResource {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public SingleResult createWarehouse(@NotNull Warehouse warehouse) throws SQLException, ClassNotFoundException {
-
-		Long warehouseId = warehouseService.saveWarehouse(warehouse);
-		return new SingleResult(warehouseId);
+	public ResponseEntity<String> createWarehouse(@NotNull Warehouse warehouse) throws SQLException, ClassNotFoundException {
+	   String body = warehouseService.saveWarehouse(warehouse);
+	   if(body.contains("ERROR_CODE")){
+	      return new ResponseEntity<String>(body.toString(),HttpStatus.BAD_REQUEST);
+	   }
+	   else{
+	      return new ResponseEntity<String>(body.toString(),HttpStatus.OK);
+	   }
 	}
 
 	@GET
