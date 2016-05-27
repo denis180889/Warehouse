@@ -17,23 +17,13 @@ import com.validators.WarehouseValidator;
 public class WarehouseService {
 
    @Autowired
-   private WarehouseValidator warehouseValidator;
-
-   @Autowired
    private WarehouseDao warehouseDao;
 
    @Transactional
-	public String saveWarehouse(Warehouse wh){
-      BeanPropertyBindingResult result = new BeanPropertyBindingResult(wh, "Warehouse");
-      ValidationUtils.invokeValidator(warehouseValidator, wh, result);
-      List<ObjectError> errors = result.getAllErrors();
-      if(!result.hasErrors()){
+	public Long saveWarehouse(Warehouse wh){
          WarehouseEntity entity = new WarehouseEntity(wh.getName(), wh.getDescription(), wh.getLongitude(), wh.getLatitude(), wh.getCapacity());    
-		   return warehouseDao.save(entity).toString();
-      }
-      else{
-         return "ERROR_CODE : " + errors.get(0).getCode();
-      }
+		   return warehouseDao.save(entity);
+      
 	}
 
    public List<Warehouse> getWarehouses() {

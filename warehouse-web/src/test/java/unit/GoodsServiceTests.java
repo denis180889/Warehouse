@@ -36,8 +36,8 @@ public class GoodsServiceTests {
       Goods goods = new Goods("banana", "very sweet");
       
       when(goodsDao.save(any(GoodsEntity.class))).thenReturn(1L);
-      long id = goodsService.saveGood(goods);
-      assertEquals(1L, id);
+      Long id = goodsService.saveGood(goods);
+      assertEquals(new Long(1), id);
    }
    
    @Test

@@ -16,26 +16,14 @@ import com.validators.GoodsValidator;
 import com.validators.WarehouseValidator;
 
 public class GoodsService {
-
-   @Autowired
-   private GoodsValidator goodsValidator;
    
    @Autowired
    private GoodsDao goodsDao; 
    
    @Transactional
-   public String saveGood(Goods wh){
-      BeanPropertyBindingResult result = new BeanPropertyBindingResult(wh, "Goods");
-      ValidationUtils.invokeValidator(goodsValidator, wh, result);
-      List<ObjectError> errors = result.getAllErrors();
-      if(!result.hasErrors()){
-         GoodsEntity entity = new GoodsEntity(wh.getName(), wh.getDescription());
-         return goodsDao.save(entity).toString();
-      }
-      else{
-         return "ERROR_CODE : " + errors.get(0).getCode();
-      }
-    
+   public Long saveGood(Goods wh){
+     GoodsEntity entity = new GoodsEntity(wh.getName(), wh.getDescription());
+     return goodsDao.save(entity);
    }
    
    public List<Goods> getGoods(){

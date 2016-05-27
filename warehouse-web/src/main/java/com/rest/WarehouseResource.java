@@ -2,30 +2,35 @@ package com.rest;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.ValidationUtils;
 import com.dto.Warehouse;
 import com.dto.WarehouseItem;
 import com.dto.WarehouseItemDecreaseAmount;
+import com.dto.common.ErrorResult;
 import com.dto.common.SingleResult;
 import com.service.WarehouseItemService;
 import com.service.WarehouseService;
+import com.validators.WarehouseValidator;
 
 @Path("/warehouse")
 @ComponentScan("com.entities")
 public class WarehouseResource {
 	
+   @Autowired
+   private WarehouseValidator warehouseValidator;
+   
 	@Autowired
 	private WarehouseService warehouseService; 
 	
@@ -35,14 +40,18 @@ public class WarehouseResource {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public ResponseEntity<String> createWarehouse(@NotNull Warehouse warehouse) throws SQLException, ClassNotFoundException {
-	   String body = warehouseService.saveWarehouse(warehouse);
-	   if(body.contains("ERROR_CODE")){
-	      return new ResponseEntity<String>(body.toString(),HttpStatus.BAD_REQUEST);
-	   }
-	   else{
-	      return new ResponseEntity<String>(body.toString(),HttpStatus.OK);
-	   }
+	public Response createWarehouse(@NotNull Warehouse warehouse) throws SQLException, ClassNotFoundException {
+	   BeanPropertyBindingResult result = new BeanPropertyBindingResult(warehouse, "Warehouse");
+      ValidationUtils.invokeValidator(warehouseValidator, warehouse, result);
+      List<ObjectError> errors = result.getAllErrors();
+      if(result.hasErrors()){
+         String error = errors.get(0).getCode();
+         return Response.status(Status.BAD_REQUEST).entity(new ErrorResult(error)).build();
+      }
+      else{
+         Long goodId = warehouseService.saveWarehouse(warehouse);
+         return Response.ok(new SingleResult(goodId)).build();
+      }
 	}
 
 	@GET
