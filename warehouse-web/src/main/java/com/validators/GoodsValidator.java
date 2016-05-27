@@ -8,9 +8,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.dto.Goods;
-import com.dto.Warehouse;
-
-import antlr.StringUtils;
 
 public class GoodsValidator implements Validator {
 

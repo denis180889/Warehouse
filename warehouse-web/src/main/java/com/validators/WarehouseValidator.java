@@ -8,7 +8,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.dto.Warehouse;
-import com.entities.WarehouseEntity;
 
 public class WarehouseValidator implements Validator {
 
