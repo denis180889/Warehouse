@@ -10,20 +10,26 @@ import com.entities.GoodsEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Good {
+public class Goods extends BaseDTO {
 
    private String name;
 
    private String description;
    
-   public Good() {
+   public Goods() {
    }
    
-   public Good (GoodsEntity warehouseEntity){
+   public Goods (GoodsEntity warehouseEntity){
       this.name = warehouseEntity.getName();
       this.description = warehouseEntity.getDescription();
    }
    
+   public Goods(String name, String description) {
+      super();
+      this.name = name;
+      this.description = description;
+   }
+
    public String getName() {
       return name;
    }

@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class WarehouseItem {
+public class WarehouseItem extends BaseDTO {
 
    private int warehouse_id;
 
