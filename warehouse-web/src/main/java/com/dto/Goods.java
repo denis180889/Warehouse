@@ -13,6 +13,8 @@ import com.entities.GoodsEntity;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Goods extends BaseDTO {
 
+   private Long id;
+
    private String name;
 
    private String description;
@@ -21,6 +23,7 @@ public class Goods extends BaseDTO {
    }
    
    public Goods (GoodsEntity warehouseEntity){
+      this.id = warehouseEntity.getId();
       this.name = warehouseEntity.getName();
       this.description = warehouseEntity.getDescription();
    }
@@ -45,5 +48,14 @@ public class Goods extends BaseDTO {
 
    public void setDescription(String description) {
       this.description = description;
+   }
+   
+   
+   public Long getId() {
+      return id;
+   }
+
+   public void setId(Long id) {
+      this.id = id;
    }
 }

@@ -1,6 +1,7 @@
 package integration;
 
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -21,8 +22,8 @@ public class BaseIntegrationTest {
       return target.path(path).request(MediaType.APPLICATION_JSON).post(Entity.json(dto));
    }
    
-   public Response get(String path) {
-      return target.path(path).request(MediaType.APPLICATION_JSON).get();
+   public Builder get(String path) {
+      return target.path(path).request(MediaType.APPLICATION_JSON);
    }
    
 }

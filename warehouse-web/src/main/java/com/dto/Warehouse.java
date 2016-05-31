@@ -13,6 +13,8 @@ import com.entities.WarehouseEntity;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Warehouse extends BaseDTO {
 
+   private Long id;
+
    private String name;
 
    private String description;
@@ -27,6 +29,7 @@ public class Warehouse extends BaseDTO {
    }
    
    public Warehouse (WarehouseEntity warehouseEntity){
+      this.id = warehouseEntity.getId();
 	   this.name = warehouseEntity.getName();
 	   this.description = warehouseEntity.getDescription();
 	   this.longitude = warehouseEntity.getLongitude();
@@ -82,6 +85,13 @@ public class Warehouse extends BaseDTO {
    public void setCapacity(int capacity) {
       this.capacity = capacity;
    }
+   
+   public Long getId() {
+      return id;
+   }
 
+   public void setId(Long id) {
+      this.id = id;
+   }
 
 }
