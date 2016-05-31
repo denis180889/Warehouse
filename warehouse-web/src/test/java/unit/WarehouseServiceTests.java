@@ -36,8 +36,8 @@ public class WarehouseServiceTests {
       Warehouse warehouse = new Warehouse("name", "desc", 1, 1, 1);
       
       when(warehouseDao.save(any(WarehouseEntity.class))).thenReturn(1L);
-      long id = warehouseService.saveWarehouse(warehouse);
-      assertEquals(1L, id);
+      Long id = warehouseService.saveWarehouse(warehouse);
+      assertEquals(new Long(1), id);
    }
    
    @Test

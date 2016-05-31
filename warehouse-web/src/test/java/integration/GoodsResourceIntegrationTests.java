@@ -12,9 +12,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dto.Goods;
+import com.dto.common.ErrorResult;
 import com.dto.common.SingleResult;
 
 import utils.DatabaseCleaner;
+import utils.Errors;
 import utils.Path;
 
 public class GoodsResourceIntegrationTests extends BaseIntegrationTest {
@@ -45,4 +47,14 @@ public class GoodsResourceIntegrationTests extends BaseIntegrationTest {
       assertEquals(1, jsonResponse.size());
    }
 
+   @Test
+   public void nameAndDescriptionAreTheSame() {
+      DatabaseCleaner.cleanTable("goods");
+      Goods goods = new Goods("SweetbananA ", "sweet Banana");
+      response = post(Path.GOOD, goods);
+      ErrorResult result = response.readEntity(ErrorResult.class);
+      String error = result.getError();
+      assertEquals(Errors.INVALID_GOODS_NAME.getErrorName(), error);
+   }
+   
 }
