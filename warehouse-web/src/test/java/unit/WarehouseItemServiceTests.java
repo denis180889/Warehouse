@@ -41,8 +41,8 @@ public class WarehouseItemServiceTests {
    @Test
    public void removeGoodFromWarehouse(){
       
-      when(warehouseItemDao.decreaseAmount(any(Long.class),any(Integer.class))).thenReturn(1L);
-      long id = warehouseItemService.removeGoodFromWarehouse(1, 1);
+      when(warehouseItemDao.decreaseAmount(any(Integer.class),any(Integer.class),any(Integer.class))).thenReturn(1L);
+      long id = warehouseItemService.removeGoodFromWarehouse(1, 1, 1);
       assertEquals(1L, id);
    }
    

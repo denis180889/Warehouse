@@ -20,7 +20,6 @@ import org.springframework.validation.ValidationUtils;
 
 import com.dto.Warehouse;
 import com.dto.WarehouseItem;
-import com.dto.WarehouseItemDecreaseAmount;
 import com.dto.common.ErrorResult;
 import com.dto.common.SingleResult;
 import com.service.WarehouseItemService;
@@ -30,54 +29,82 @@ import com.validators.WarehouseValidator;
 @Path("/warehouse")
 @ComponentScan("com.entities")
 public class WarehouseResource {
-	
+
    @Autowired
    private WarehouseValidator warehouseValidator;
-   
-	@Autowired
-	private WarehouseService warehouseService; 
-	
-	@Autowired
-   private WarehouseItemService warehouseItemService; 
-	
-	
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response createWarehouse(@NotNull Warehouse warehouse) throws SQLException, ClassNotFoundException {
-	   BeanPropertyBindingResult result = new BeanPropertyBindingResult(warehouse, "Warehouse");
+
+   @Autowired
+   private WarehouseService warehouseService;
+
+   @Autowired
+   private WarehouseItemService warehouseItemService;
+
+
+   @POST
+   @Produces(MediaType.APPLICATION_JSON)
+   public Response createWarehouse(@NotNull Warehouse warehouse) throws SQLException, ClassNotFoundException {
+      BeanPropertyBindingResult result = new BeanPropertyBindingResult(warehouse, "Warehouse");
       ValidationUtils.invokeValidator(warehouseValidator, warehouse, result);
       List<ObjectError> errors = result.getAllErrors();
-      if(result.hasErrors()){
+      if (result.hasErrors()) {
          String error = errors.get(0).getCode();
          return Response.status(Status.BAD_REQUEST).entity(new ErrorResult(error)).build();
-      }
-      else{
+      } else {
          Long goodId = warehouseService.saveWarehouse(warehouse);
          return Response.ok(new SingleResult(goodId)).build();
       }
-	}
+   }
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Warehouse> getWarehouses() throws ClassNotFoundException, SQLException {
-		return warehouseService.getWarehouses();
-	}
-	
-	@POST
-	@Path("/goods/add")
+   @GET
+   @Produces(MediaType.APPLICATION_JSON)
+   public List<Warehouse> getWarehouses() throws ClassNotFoundException, SQLException {
+      return warehouseService.getWarehouses();
+   }
+
+   @POST
+   @Path("/goods/add")
    @Produces(MediaType.APPLICATION_JSON)
    public SingleResult addGoodToWarehouse(@NotNull WarehouseItem warehouseItem) throws SQLException, ClassNotFoundException {
-
       Long warehouseId = warehouseItemService.addGoodToWarehouse(warehouseItem);
       return new SingleResult(warehouseId);
    }
-	
-	@POST
+
+   @POST
+   @Path("/goods/increase")
+   @Produces(MediaType.APPLICATION_JSON)
+   public Response increaseGoodFromWarehouse(@NotNull WarehouseItem wIDAmount) throws SQLException, ClassNotFoundException {
+      if(!warehouseItemService.checkIfWarehouseExists(wIDAmount.getWarehouseId())){
+         return Response.status(Status.BAD_REQUEST).entity(new ErrorResult("NON_EXISTING_WAREHOUSE_ID")).build();
+      }
+      if(!warehouseItemService.checkIfGoodExists(wIDAmount.getGoodId())){
+         return Response.status(Status.BAD_REQUEST).entity(new ErrorResult("NON_EXISTING_GOOD_ID")).build();
+      }
+      if(!warehouseItemService.checkIfGoodExistsOnWarehouse(wIDAmount.getWarehouseId(), wIDAmount.getGoodId())){
+         return Response.status(Status.BAD_REQUEST).entity(new ErrorResult("NON_EXISTING_GOOD_ON_WAREHOUSE")).build();
+      }
+      else{
+      Long warehouseItemId = warehouseItemService.increaseGoodFromWarehouse(wIDAmount.getWarehouseId(), wIDAmount.getGoodId(), wIDAmount.getAmount());
+         return Response.ok(new SingleResult(warehouseItemId)).build();
+      }
+   }
+
+   @POST
    @Path("/goods/remove")
    @Produces(MediaType.APPLICATION_JSON)
-   public SingleResult removeGoodFromWarehouse(@NotNull WarehouseItemDecreaseAmount wIDAmount) throws SQLException, ClassNotFoundException {
-	   Long warehouseItemId = warehouseItemService.removeGoodFromWarehouse(wIDAmount.getId(), wIDAmount.getAmount());
-      return new SingleResult(warehouseItemId);
+   public Response removeGoodFromWarehouse(@NotNull WarehouseItem wIDAmount) throws SQLException, ClassNotFoundException {
+      if(!warehouseItemService.checkIfWarehouseExists(wIDAmount.getWarehouseId())){
+         return Response.status(Status.BAD_REQUEST).entity(new ErrorResult("NON_EXISTING_WAREHOUSE_ID")).build();
+      }
+      if(!warehouseItemService.checkIfGoodExists(wIDAmount.getGoodId())){
+         return Response.status(Status.BAD_REQUEST).entity(new ErrorResult("NON_EXISTING_GOOD_ID")).build();
+      }
+      if(!warehouseItemService.checkIfGoodExistsOnWarehouse(wIDAmount.getWarehouseId(), wIDAmount.getGoodId())){
+         return Response.status(Status.BAD_REQUEST).entity(new ErrorResult("NON_EXISTING_GOOD_ON_WAREHOUSE")).build();
+      }
+      else{
+      Long warehouseItemId = warehouseItemService.removeGoodFromWarehouse(wIDAmount.getWarehouseId(), wIDAmount.getGoodId(), wIDAmount.getAmount());
+         return Response.ok(new SingleResult(warehouseItemId)).build();
+      }
    }
 
 }

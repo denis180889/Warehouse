@@ -19,7 +19,27 @@ public class WarehouseItemService {
    }
    
    @Transactional
-   public Long removeGoodFromWarehouse(long id , int amount){
-      return warehouseItemDao.decreaseAmount(id, amount);
+   public Long increaseGoodFromWarehouse(int warehouse_id, int good_id , int amount){
+      return warehouseItemDao.increaseAmount(warehouse_id, good_id, amount);
+   }
+   
+   @Transactional
+   public Long removeGoodFromWarehouse(int warehouse_id, int good_id , int amount){
+      return warehouseItemDao.decreaseAmount(warehouse_id, good_id, amount);
+   }
+ 
+   @Transactional
+   public boolean checkIfWarehouseExists(int warehouse_id){
+      return warehouseItemDao.checkIfWarehouseExists(warehouse_id);
+   }
+   
+   @Transactional
+   public boolean checkIfGoodExists(int good_id){
+      return warehouseItemDao.checkIfGoodExists(good_id);
+   }
+   
+   @Transactional
+   public boolean checkIfGoodExistsOnWarehouse(int warehouse_id, int good_id){
+      return warehouseItemDao.checkIfGoodExistsOnWarehouse(warehouse_id, good_id);
    }
 }

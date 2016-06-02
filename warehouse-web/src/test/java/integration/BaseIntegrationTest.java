@@ -9,11 +9,11 @@ import javax.ws.rs.core.Response;
 import com.dto.BaseDTO;
 import com.util.PropertiesContext;
 
-import utils.DatabaseCleaner;
+import utils.DatabaseUtil;
 
 public class BaseIntegrationTest {
    
-   protected DatabaseCleaner databaseCleaner;
+   protected DatabaseUtil databaseCleaner;
    protected Response response;
    protected WebTarget target;
    protected String applicationUrl = PropertiesContext.getPropertiesContext().getProperty("app.url");

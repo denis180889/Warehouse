@@ -20,7 +20,7 @@ import com.dto.common.SingleResult;
 import com.entities.GoodsEntity;
 import com.service.GoodsService;
 
-import utils.DatabaseCleaner;
+import utils.DatabaseUtil;
 import utils.Errors;
 import utils.Path;
 
@@ -34,7 +34,7 @@ public class GoodsResourceIntegrationTests extends BaseIntegrationTest {
 
    @Test
    public void createGoods() {
-      DatabaseCleaner.cleanTable("goods");
+      DatabaseUtil.cleanTable("goods");
       Goods goods = new Goods("banana", "very sweet");
       response = post(Path.GOOD, goods);
       SingleResult result = response.readEntity(SingleResult.class);
@@ -49,7 +49,7 @@ public class GoodsResourceIntegrationTests extends BaseIntegrationTest {
 
    @Test
    public void getGoods() {
-      DatabaseCleaner.cleanTable("goods");
+      DatabaseUtil.cleanTable("goods");
       Goods goods1 = new Goods("banana", "very sweet");
       Goods goods2 = new Goods("kiwi", "very tasty");
       post(Path.GOOD, goods1);
@@ -62,7 +62,7 @@ public class GoodsResourceIntegrationTests extends BaseIntegrationTest {
 
    @Test
    public void nameAndDescriptionAreTheSame() {
-      DatabaseCleaner.cleanTable("goods");
+      DatabaseUtil.cleanTable("goods");
       Goods goods = new Goods("SweetbananA ", "sweet Banana");
       response = post(Path.GOOD, goods);
       ErrorResult result = response.readEntity(ErrorResult.class);
