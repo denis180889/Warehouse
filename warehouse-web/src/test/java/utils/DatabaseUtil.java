@@ -67,7 +67,7 @@ public class DatabaseUtil {
          rs.close();
          preparedStatement.close();
       } catch (Exception e) {
-         e.printStackTrace();
+        
       }
       finally{
          try {
