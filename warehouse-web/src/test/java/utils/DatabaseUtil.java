@@ -54,20 +54,20 @@ public class DatabaseUtil {
       ResultSet rs = null;
       int result = 0;
       PreparedStatement preparedStatement = null;
+      String query = "SELECT * FROM "+table+" WHERE id=?";
       try {
          if(conn == null){
             getConnection();
          }
-         preparedStatement = conn.prepareStatement("SELECT * FROM ? WHERE id=?");
-         preparedStatement.setString(1, table);
-         preparedStatement.setInt(2, rowId);
-         rs  = preparedStatement.executeQuery("SELECT * FROM " + table + " WHERE id="+rowId);
+         preparedStatement = conn.prepareStatement(query);
+         preparedStatement.setInt(1, rowId);
+         rs  = preparedStatement.executeQuery();
          rs.last();
-         result = rs.getInt("amount");
+         result = rs.getInt(value);
          rs.close();
          preparedStatement.close();
       } catch (Exception e) {
-         
+         e.printStackTrace();
       }
       finally{
          try {
