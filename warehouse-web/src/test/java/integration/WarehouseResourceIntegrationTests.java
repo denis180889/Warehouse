@@ -73,9 +73,8 @@ public class WarehouseResourceIntegrationTests extends BaseIntegrationTest {
       long id = result.getId();
       assertEquals("Id in response was wrong", 2, id);
       assertEquals("Response was wrong",200 , response.getStatus());
-      ResultSet rs = DatabaseUtil.getRowById("warehouse_item", 2);
-      rs.last();
-      assertEquals("Amount was not increased", 7 , rs.getInt("amount")); 
+      int rs = DatabaseUtil.getValueInTheRowById("warehouse_item", 2, "amount");
+      assertEquals("Amount was not increased", 7 , rs); 
    }
    
    @Test
@@ -93,9 +92,8 @@ public class WarehouseResourceIntegrationTests extends BaseIntegrationTest {
       long id = result.getId();
       assertEquals("Id in response was wrong", 2, id);
       assertEquals("Response was wrong",200 , response.getStatus());
-      ResultSet rs = DatabaseUtil.getRowById("warehouse_item", 2);
-      rs.last();
-      assertEquals("Amount was not removed", 1 , rs.getInt("amount")); 
+      int rs = DatabaseUtil.getValueInTheRowById("warehouse_item", 2, "amount");
+      assertEquals("Amount was not removed", 1 , rs); 
    }
    
    @Test
