@@ -40,7 +40,9 @@ public class DatabaseUtil {
       }
       finally{
          try {
+            if(!statement.isClosed()){
             statement.close();
+            }
          } catch (SQLException e) {
          
          }
@@ -67,8 +69,10 @@ public class DatabaseUtil {
       }
       finally{
          try {
+            if(!statement.isClosed() || !rs.isClosed()){
             rs.close();
             statement.close();
+            }
          } catch (SQLException e) {
            
          }
