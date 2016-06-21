@@ -26,20 +26,21 @@ public class DatabaseUtil {
 
    public static void cleanTable(String tableName) {
       String cleanTableSQL = "TRUNCATE " + tableName;
+      Statement statement = null;
       try {
          getConnection();
          if(conn.isClosed()){
             getConnection();
          }
-         Statement statement = conn.createStatement();
+         statement = conn.createStatement();
          statement.executeUpdate(cleanTableSQL);
-         conn.close();
+         statement.close();
       } catch (Exception e) {
         
       }
       finally{
          try {
-            conn.close();
+            statement.close();
          } catch (SQLException e) {
          
          }
@@ -49,22 +50,25 @@ public class DatabaseUtil {
    public static int getValueInTheRowById(String table, int rowId, String value){
       ResultSet rs = null;
       int result = 0;
+      Statement statement = null;
       try {
          getConnection();
          if(conn.isClosed()){
             getConnection();
          }
-         Statement statement = conn.createStatement();
+         statement = conn.createStatement();
          rs  = statement.executeQuery("SELECT * FROM " + table + " WHERE id="+rowId);
          rs.last();
          result = rs.getInt("amount");
-         conn.close();
+         rs.close();
+         statement.close();
       } catch (Exception e) {
          
       }
       finally{
          try {
-            conn.close();
+            rs.close();
+            statement.close();
          } catch (SQLException e) {
            
          }
