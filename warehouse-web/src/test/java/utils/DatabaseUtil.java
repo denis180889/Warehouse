@@ -2,6 +2,7 @@ package utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,25 +53,26 @@ public class DatabaseUtil {
    public static int getValueInTheRowById(String table, int rowId, String value){
       ResultSet rs = null;
       int result = 0;
-      Statement statement = null;
+      PreparedStatement preparedStatement = null;
       try {
-         getConnection();
-         if(conn.isClosed()){
+         if(conn == null){
             getConnection();
          }
-         statement = conn.createStatement();
-         rs  = statement.executeQuery("SELECT * FROM " + table + " WHERE id="+rowId);
+         preparedStatement = conn.prepareStatement("SELECT * FROM ? WHERE id=?");
+         preparedStatement.setString(1, table);
+         preparedStatement.setInt(2, rowId);
+         rs  = preparedStatement.executeQuery("SELECT * FROM " + table + " WHERE id="+rowId);
          rs.last();
          result = rs.getInt("amount");
          rs.close();
-         statement.close();
+         preparedStatement.close();
       } catch (Exception e) {
          
       }
       finally{
          try {
-            if(statement != null){
-            statement.close();
+            if(preparedStatement != null){
+               preparedStatement.close();
             }
             if(rs != null){
             rs.close();
