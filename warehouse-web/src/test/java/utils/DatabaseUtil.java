@@ -69,9 +69,11 @@ public class DatabaseUtil {
       }
       finally{
          try {
-            if(statement != null || rs != null ){
-            rs.close();
+            if(statement != null){
             statement.close();
+            }
+            if(rs != null){
+            rs.close();
             }
          } catch (SQLException e) {
            
