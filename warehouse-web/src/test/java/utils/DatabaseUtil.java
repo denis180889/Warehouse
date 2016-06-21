@@ -20,7 +20,7 @@ public class DatabaseUtil {
          Class.forName("com.mysql.jdbc.Driver");
          conn = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
       } catch (Exception e) {
-         e.printStackTrace();
+      
       }
    }
 
@@ -35,13 +35,13 @@ public class DatabaseUtil {
          statement.executeUpdate(cleanTableSQL);
          conn.close();
       } catch (Exception e) {
-         e.printStackTrace();
+        
       }
       finally{
          try {
             conn.close();
          } catch (SQLException e) {
-            e.printStackTrace();
+         
          }
       }
    }
@@ -60,13 +60,13 @@ public class DatabaseUtil {
          result = rs.getInt("amount");
          conn.close();
       } catch (Exception e) {
-         e.printStackTrace();
+         
       }
       finally{
          try {
             conn.close();
          } catch (SQLException e) {
-            e.printStackTrace();
+           
          }
       }
       return result;

@@ -20,6 +20,7 @@ public class Goods extends BaseDTO {
    private String description;
    
    public Goods() {
+    //need this empty constructor for Jersey 
    }
    
    public Goods (GoodsEntity warehouseEntity){

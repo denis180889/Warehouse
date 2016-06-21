@@ -18,6 +18,7 @@ public class WarehouseItem extends BaseDTO {
    private int amount;
 
    public WarehouseItem() {
+    //need this empty constructor for Jersey 
    }
    
    public WarehouseItem(int warehouse_id, int good_id, int amount) {

@@ -26,6 +26,7 @@ public class Warehouse extends BaseDTO {
    private int capacity;
 
    public Warehouse() {
+      //need this empty constructor for Jersey 
    }
    
    public Warehouse (WarehouseEntity warehouseEntity){

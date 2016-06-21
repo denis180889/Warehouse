@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ErrorResult {
 
    public ErrorResult() {
+    //need this empty constructor for Jersey 
    }
 
    public ErrorResult(String error){

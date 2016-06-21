@@ -14,6 +14,7 @@ public class SingleResult {
    private long id;
 
    public SingleResult(){
+    //need this empty constructor for Jersey 
    }
    
    public SingleResult(long id){
