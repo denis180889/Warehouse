@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.util.PropertiesContext;
 
@@ -14,14 +16,15 @@ public class DatabaseUtil {
    private static String jdbcUrl = PropertiesContext.getPropertiesContext().getProperty("jdbc.url");;
    private static String jdbcUsername = PropertiesContext.getPropertiesContext().getProperty("jdbc.username");;
    private static String jdbcPassword = PropertiesContext.getPropertiesContext().getProperty("jdbc.password");;
-
-
+   
+   static Logger logger = Logger.getAnonymousLogger();
+   
    private static void getConnection() {
       try {
          Class.forName("com.mysql.jdbc.Driver");
          conn = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
       } catch (Exception e) {
-      
+         logger.log(Level.SEVERE, "an exception was thrown", e);
       }
    }
 
@@ -37,7 +40,7 @@ public class DatabaseUtil {
          statement.executeUpdate(cleanTableSQL);
          statement.close();
       } catch (Exception e) {
-        
+         logger.log(Level.SEVERE, "an exception was thrown", e);
       }
       finally{
          try {
@@ -45,7 +48,7 @@ public class DatabaseUtil {
             statement.close();
             }
          } catch (SQLException e) {
-         
+            logger.log(Level.SEVERE, "an exception was thrown", e);
          }
       }
    }
@@ -67,7 +70,7 @@ public class DatabaseUtil {
          rs.close();
          preparedStatement.close();
       } catch (Exception e) {
-        
+         logger.log(Level.SEVERE, "an exception was thrown", e);
       }
       finally{
          try {
@@ -78,7 +81,7 @@ public class DatabaseUtil {
             rs.close();
             }
          } catch (SQLException e) {
-           
+            logger.log(Level.SEVERE, "an exception was thrown", e);
          }
       }
       return result;

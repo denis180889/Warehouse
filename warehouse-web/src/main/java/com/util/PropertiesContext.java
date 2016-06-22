@@ -3,12 +3,16 @@ package com.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class PropertiesContext {
 
    private static PropertiesContext instance;
-
+   Logger logger = Logger.getAnonymousLogger();
+   
+   
    private PropertiesContext() {
       init();
    }
@@ -23,7 +27,7 @@ public class PropertiesContext {
          generalMap.load(inputStream);
          inputStream.close();
       } catch (IOException e) {
-         e.getMessage();
+         logger.log(Level.SEVERE, "an exception was thrown", e);
       }
    }
 
