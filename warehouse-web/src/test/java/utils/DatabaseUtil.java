@@ -19,6 +19,10 @@ public class DatabaseUtil {
    
    static Logger logger = Logger.getAnonymousLogger();
    
+   private DatabaseUtil() {
+      //constructor to hide the implicit public one
+   }
+   
    private static void getConnection() {
       try {
          Class.forName("com.mysql.jdbc.Driver");

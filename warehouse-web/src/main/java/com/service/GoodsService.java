@@ -23,7 +23,7 @@ public class GoodsService {
    
    public List<Goods> getGoods(){
       List<GoodsEntity> listGe = goodsDao.list();
-      List<Goods> listG = new ArrayList<Goods>();
+      List<Goods> listG = new ArrayList<>();
       for(GoodsEntity entity:listGe){
          listG.add(new Goods(entity));
       }

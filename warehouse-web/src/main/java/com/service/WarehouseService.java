@@ -24,7 +24,7 @@ public class WarehouseService {
 
    public List<Warehouse> getWarehouses() {
       List<WarehouseEntity> listWE = warehouseDao.list();
-      List<Warehouse> listW = new ArrayList<Warehouse>();
+      List<Warehouse> listW = new ArrayList<>();
       for (WarehouseEntity entity : listWE) {
          listW.add(new Warehouse(entity));
       }
