@@ -21,6 +21,7 @@ public class GoodsEntity extends BaseEntity {
    private String description;
 
    public GoodsEntity() {
+      //need this empty constructor for Jersey 
    }
    
    public GoodsEntity(String name, String description) {

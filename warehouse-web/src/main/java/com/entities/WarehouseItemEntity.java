@@ -26,6 +26,7 @@ public class WarehouseItemEntity extends BaseEntity {
    private int amount;
 
    public WarehouseItemEntity() {
+    //need this empty constructor for Jersey 
    }
 
    public WarehouseItemEntity(int warehouse_id, int good_id, int amount) {

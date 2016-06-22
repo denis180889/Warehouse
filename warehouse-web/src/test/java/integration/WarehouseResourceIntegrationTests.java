@@ -2,19 +2,23 @@ package integration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import com.dto.Warehouse;
 import com.dto.WarehouseItem;
 import com.dto.common.ErrorResult;
 import com.dto.common.SingleResult;
+
 import utils.DatabaseUtil;
 import utils.Errors;
 import utils.Path;

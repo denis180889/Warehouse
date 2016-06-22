@@ -1,6 +1,5 @@
 package com.rest;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -36,7 +35,7 @@ public class GoodsResource {
    
    @POST
    @Produces(MediaType.APPLICATION_JSON)
-   public Response createGoods(@NotNull Goods goods) throws SQLException, ClassNotFoundException {
+   public Response createGoods(@NotNull Goods goods) {
       BeanPropertyBindingResult result = new BeanPropertyBindingResult(goods, "Goods");
       ValidationUtils.invokeValidator(goodsValidator, goods, result);
       List<ObjectError> errors = result.getAllErrors();
@@ -53,7 +52,7 @@ public class GoodsResource {
 
    @GET
    @Produces(MediaType.APPLICATION_JSON)
-   public List<Goods> getGoods() throws ClassNotFoundException, SQLException {
+   public List<Goods> getGoods() {
       return goodsService.getGoods();
    }
 }

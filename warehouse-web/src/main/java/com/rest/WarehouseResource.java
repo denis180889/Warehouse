@@ -42,7 +42,7 @@ public class WarehouseResource {
 
    @POST
    @Produces(MediaType.APPLICATION_JSON)
-   public Response createWarehouse(@NotNull Warehouse warehouse) throws SQLException, ClassNotFoundException {
+   public Response createWarehouse(@NotNull Warehouse warehouse) {
       BeanPropertyBindingResult result = new BeanPropertyBindingResult(warehouse, "Warehouse");
       ValidationUtils.invokeValidator(warehouseValidator, warehouse, result);
       List<ObjectError> errors = result.getAllErrors();
@@ -57,14 +57,14 @@ public class WarehouseResource {
 
    @GET
    @Produces(MediaType.APPLICATION_JSON)
-   public List<Warehouse> getWarehouses() throws ClassNotFoundException, SQLException {
+   public List<Warehouse> getWarehouses()  {
       return warehouseService.getWarehouses();
    }
 
    @POST
    @Path("/goods/add")
    @Produces(MediaType.APPLICATION_JSON)
-   public SingleResult addGoodToWarehouse(@NotNull WarehouseItem warehouseItem) throws SQLException, ClassNotFoundException {
+   public SingleResult addGoodToWarehouse(@NotNull WarehouseItem warehouseItem) {
       Long warehouseId = warehouseItemService.addGoodToWarehouse(warehouseItem);
       return new SingleResult(warehouseId);
    }
@@ -72,7 +72,7 @@ public class WarehouseResource {
    @POST
    @Path("/goods/increase")
    @Produces(MediaType.APPLICATION_JSON)
-   public Response increaseGoodFromWarehouse(@NotNull WarehouseItem wIDAmount) throws SQLException, ClassNotFoundException {
+   public Response increaseGoodFromWarehouse(@NotNull WarehouseItem wIDAmount) {
       if(!warehouseItemService.checkIfWarehouseExists(wIDAmount.getWarehouseId())){
          return Response.status(Status.BAD_REQUEST).entity(new ErrorResult("NON_EXISTING_WAREHOUSE_ID")).build();
       }
@@ -91,7 +91,7 @@ public class WarehouseResource {
    @POST
    @Path("/goods/remove")
    @Produces(MediaType.APPLICATION_JSON)
-   public Response removeGoodFromWarehouse(@NotNull WarehouseItem wIDAmount) throws SQLException, ClassNotFoundException {
+   public Response removeGoodFromWarehouse(@NotNull WarehouseItem wIDAmount) {
       if(!warehouseItemService.checkIfWarehouseExists(wIDAmount.getWarehouseId())){
          return Response.status(Status.BAD_REQUEST).entity(new ErrorResult("NON_EXISTING_WAREHOUSE_ID")).build();
       }

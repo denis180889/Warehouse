@@ -27,6 +27,7 @@ public class WarehouseEntity extends BaseEntity {
    private int capacity;
 
    public WarehouseEntity() {
+    //need this empty constructor for Jersey 
    }
 
    public WarehouseEntity(String name, String description, float longitude, float latitude, int capacity) {
