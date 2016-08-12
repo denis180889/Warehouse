@@ -9,12 +9,11 @@
 
 	<context:component-scan base-package="com.dao" />
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/warehouse" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
 
 	<!-- Hibernate 3 Annotation SessionFactory Bean definition -->
@@ -24,6 +23,8 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.entities.WarehouseEntity</value>
+				<value>com.entities.GoodsEntity</value>
+				<value>com.entities.WarehouseItemEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -32,13 +33,36 @@
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="com.byteslounge.spring.tx.model" />
 	</bean>
 
 	<bean id="warehouseDAO" class="com.dao.WarehouseDao">
-		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="warehouseItemDAO" class="com.dao.WarehouseItemDao">
+	</bean>
+
+	<bean id="goodsDao" class="com.dao.GoodsDao">
 	</bean>
 
 	<bean id="warehouseService" class="com.service.WarehouseService">
 	</bean>
+
+	<bean id="warehouseItemService" class="com.service.WarehouseItemService">
+	</bean>
+
+	<bean id="goodsService" class="com.service.GoodsService">
+	</bean>
+
+	<bean id="warehouseValidator" class="com.validators.WarehouseValidator">
+	</bean>
+	
+	<bean id="goodsValidator" class="com.validators.GoodsValidator">
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:conf/app.properties</value>
+		</property>
+	</bean>
+
 </beans>

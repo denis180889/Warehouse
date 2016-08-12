@@ -9,20 +9,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class SingleResult {
-   
-   private long id;
+public class ErrorResult {
 
-   public SingleResult(){
+   public ErrorResult() {
     //need this empty constructor for Jersey 
    }
-   
-   public SingleResult(long id){
-      this.id = id;
+
+   public ErrorResult(String error){
+      this.ERROR_CODE = error;
    }
    
-   public long getId() {
-      return id;
+   private String ERROR_CODE;
+
+   public String getError() {
+      return ERROR_CODE;
+   }
+
+   public void setError(String error) {
+      this.ERROR_CODE = error;
    }
    
 }

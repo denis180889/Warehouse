@@ -11,7 +11,9 @@ import com.entities.WarehouseEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Warehouse {
+public class Warehouse extends BaseDTO {
+
+   private Long id;
 
    private String name;
 
@@ -24,14 +26,25 @@ public class Warehouse {
    private int capacity;
 
    public Warehouse() {
+      //need this empty constructor for Jersey 
    }
    
    public Warehouse (WarehouseEntity warehouseEntity){
+      this.id = warehouseEntity.getId();
 	   this.name = warehouseEntity.getName();
 	   this.description = warehouseEntity.getDescription();
 	   this.longitude = warehouseEntity.getLongitude();
 	   this.latitude = warehouseEntity.getLatitude();
 	   this.capacity = warehouseEntity.getCapacity();
+   }
+   
+   public Warehouse(String name, String description, float longitude, float latitude, int capacity) {
+      super();
+      this.name = name;
+      this.description = description;
+      this.longitude = longitude;
+      this.latitude = latitude;
+      this.capacity = capacity;
    }
    
    public String getName() {
@@ -73,6 +86,13 @@ public class Warehouse {
    public void setCapacity(int capacity) {
       this.capacity = capacity;
    }
+   
+   public Long getId() {
+      return id;
+   }
 
+   public void setId(Long id) {
+      this.id = id;
+   }
 
 }
