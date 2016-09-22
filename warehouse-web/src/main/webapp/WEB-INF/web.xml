@@ -14,7 +14,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring.xml</param-value>
-    </context-param> 
+    </context-param>
   
   <servlet>
 		<servlet-name>jersey-servlet</servlet-name>
@@ -38,5 +38,19 @@
 		<servlet-name>jersey-servlet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
-  
+
+
+	<servlet>
+		<servlet-name>mvc</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>mvc</servlet-name>
+		<url-pattern>/ui/*</url-pattern>
+	</servlet-mapping>
+
 </web-app>
