@@ -8,6 +8,7 @@
 </head>
 <body>
 
+
 <h2>Warehouse Information</h2>
 <table>
     <c:forEach var="warehouse" items="${warehouses}">
@@ -18,5 +19,8 @@
         <td>
             </c:forEach>
 </table>
+
+<jsp:include page="addWarehouse.jsp"></jsp:include>
+
 </body>
 </html>
