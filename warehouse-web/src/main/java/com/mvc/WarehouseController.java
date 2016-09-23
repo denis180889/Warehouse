@@ -16,6 +16,11 @@ public class WarehouseController {
     @Autowired
     private WarehouseService warehouseService;
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping(value = "/warehouses", method = RequestMethod.GET)
     public String showWarehouses(ModelMap model) {
         model.addAttribute("warehouses", warehouseService.getWarehouses());
