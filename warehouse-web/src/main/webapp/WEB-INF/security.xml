@@ -9,7 +9,7 @@
 
 
     <http auto-config="true" >
-        <intercept-url pattern="/ui/warehouses"  access="ROLE_ADMIN"/>
+        <intercept-url pattern="/ui/warehouses"  access="ROLE_ADMIN, ROLE_USER"/>
         <form-login login-page="/ui/login" />
         <logout logout-url="/logout" logout-success-url="/index"/>
         <remember-me/>
@@ -18,9 +18,8 @@
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER"/>
-                <user name="user1" password="1111" authorities="ROLE_USER"/>
-                <user name="user2" password="2222" disabled="true" authorities="ROLE_USER"/>
+                <user name="admin" password="pass" authorities="ROLE_ADMIN"/>
+                <user name="user" password="1111" authorities="ROLE_USER"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>
